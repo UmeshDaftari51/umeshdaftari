@@ -32,8 +32,23 @@ img{max-width:100%;display:block}
 /* ══════════════════════════════════════════
    CMS PANEL STYLES
 ══════════════════════════════════════════ */
-#cms-fab{position:fixed;bottom:2rem;right:2rem;z-index:10000;width:54px;height:54px;border-radius:50%;background:var(--gold);color:#000;border:none;cursor:pointer;font-size:1.25rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(232,184,75,.45);transition:transform .2s,box-shadow .2s;font-weight:700}
+#cms-fab{position:fixed;bottom:2rem;right:2rem;z-index:10000;width:54px;height:54px;border-radius:50%;background:var(--gold);color:#000;border:none;cursor:pointer;font-size:1.25rem;display:none;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(232,184,75,.45);transition:transform .2s,box-shadow .2s;font-weight:700}
+#cms-fab.unlocked{display:flex}
 #cms-fab:hover{transform:scale(1.1);box-shadow:0 6px 32px rgba(232,184,75,.65)}
+/* Password modal */
+#cms-pw-modal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:20000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+#cms-pw-modal.on{display:flex}
+#cms-pw-box{background:#161B22;border:1px solid #30363D;border-radius:12px;padding:2.5rem 2rem;width:340px;text-align:center}
+#cms-pw-box h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:#F0EEE6;margin-bottom:.4rem}
+#cms-pw-box p{font-size:.8rem;color:rgba(240,238,230,.45);margin-bottom:1.5rem}
+#cms-pw-input{width:100%;background:#0D1117;border:1px solid #30363D;color:#F0EEE6;font-family:'Inter',sans-serif;font-size:1rem;padding:.7rem 1rem;border-radius:6px;outline:none;text-align:center;letter-spacing:.2em;margin-bottom:.75rem;transition:border-color .2s}
+#cms-pw-input:focus{border-color:#58A6FF}
+#cms-pw-input.shake{animation:shake .4s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+#cms-pw-btn{width:100%;background:#E8B84B;color:#000;border:none;border-radius:6px;padding:.72rem;font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:opacity .2s;margin-bottom:.6rem}
+#cms-pw-btn:hover{opacity:.88}
+#cms-pw-err{font-size:.74rem;color:#F85149;min-height:1rem;margin-bottom:.3rem}
+#cms-pw-hint{font-size:.68rem;color:rgba(240,238,230,.25)}
 
 #cms-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9000;opacity:0;pointer-events:none;transition:opacity .3s}
 #cms-overlay.on{opacity:1;pointer-events:all}
@@ -299,6 +314,17 @@ footer{background:#050508;padding:1.3rem 5vw;display:flex;justify-content:space-
 <!-- ════════════════════════════════════════
      CMS FAB + PANEL
 ════════════════════════════════════════ -->
+<!-- Password Modal -->
+<div id="cms-pw-modal">
+  <div id="cms-pw-box">
+    <h3>Portfolio Editor</h3>
+    <p>Enter your password to access the CMS</p>
+    <input type="password" id="cms-pw-input" placeholder="••••••••" maxlength="32" onkeydown="if(event.key==='Enter')checkPw()">
+    <div id="cms-pw-err"></div>
+    <button id="cms-pw-btn" onclick="checkPw()">Unlock Editor →</button>
+    <div id="cms-pw-hint">Hint: only you know this 🔒</div>
+  </div>
+</div>
 <button id="cms-fab" onclick="cmsToggle()" title="Open CMS Editor">✏️</button>
 <div id="cms-overlay" onclick="cmsToggle()"></div>
 
@@ -964,12 +990,66 @@ function importData(input){
 }
 
 /* CMS Panel */
+/* ════ PASSWORD + CMS TOGGLE ════ */
+// Change this password to whatever you want
+const CMS_PASSWORD = 'Umesh@2025';
+let cmsUnlocked = false;
+
+function initCMS(){
+  // Check if already unlocked this session
+  try{ if(sessionStorage.getItem('cms_auth')==='yes'){ cmsUnlocked=true; document.getElementById('cms-fab').classList.add('unlocked'); } }catch(e){}
+}
+
 function cmsToggle(){
+  if(!cmsUnlocked){
+    // Show password modal
+    const m = document.getElementById('cms-pw-modal');
+    m.classList.add('on');
+    setTimeout(()=>document.getElementById('cms-pw-input').focus(),100);
+    return;
+  }
   const p=document.getElementById('cms'), o=document.getElementById('cms-overlay'), f=document.getElementById('cms-fab');
   const open = p.classList.toggle('open');
   o.classList.toggle('on',open);
   f.textContent = open ? '✕' : '✏️';
 }
+
+function checkPw(){
+  const inp = document.getElementById('cms-pw-input');
+  const err = document.getElementById('cms-pw-err');
+  if(inp.value === CMS_PASSWORD){
+    cmsUnlocked = true;
+    try{ sessionStorage.setItem('cms_auth','yes'); }catch(e){}
+    document.getElementById('cms-pw-modal').classList.remove('on');
+    document.getElementById('cms-fab').classList.add('unlocked');
+    inp.value = '';
+    err.textContent = '';
+    // Open CMS immediately after unlock
+    const p=document.getElementById('cms'), o=document.getElementById('cms-overlay'), f=document.getElementById('cms-fab');
+    p.classList.add('open'); o.classList.add('on'); f.textContent='✕';
+  } else {
+    err.textContent = 'Incorrect password. Try again.';
+    inp.classList.add('shake');
+    inp.value = '';
+    setTimeout(()=>inp.classList.remove('shake'),400);
+    setTimeout(()=>err.textContent='',2500);
+  }
+}
+
+// Secret keyboard shortcut: press Ctrl+Shift+E to open CMS login
+document.addEventListener('keydown', e=>{
+  if(e.ctrlKey && e.shiftKey && e.key==='E'){
+    e.preventDefault();
+    if(!cmsUnlocked){
+      const m=document.getElementById('cms-pw-modal');
+      m.classList.add('on');
+      setTimeout(()=>document.getElementById('cms-pw-input').focus(),100);
+    }
+  }
+  if(e.key==='Escape'){
+    document.getElementById('cms-pw-modal').classList.remove('on');
+  }
+});
 
 function cTab(name, btn){
   document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('on'));
@@ -1009,6 +1089,7 @@ document.addEventListener('scroll',()=>{
 },{ passive:true });
 
 /* INIT */
+initCMS();
 renderAll();
 observeRv();
 </script>
