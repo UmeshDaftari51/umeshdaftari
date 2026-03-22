@@ -4,529 +4,426 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Umesh Daftari — Enterprise SaaS Sales | Portfolio</title>
-<meta name="description" content="Enterprise SaaS Sales Leader with 5+ years closing Fortune 500 deals across India, UAE, USA & UK.">
+<meta name="description" content="Enterprise SaaS Sales Leader. 23+ clients. 77% sales growth. Fortune 500 deals across India, UAE, USA & UK.">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ═══════════════════════════════════════════════════════
-   CSS VARIABLES & RESET
-═══════════════════════════════════════════════════════ */
+/* ── VARIABLES ── */
 :root{
-  --bg:#0A0A0F;--bg2:#12121A;--bg3:#1A1A26;--surface:#1E1E2E;
-  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
-  --gold:#E8B84B;--gold2:rgba(232,184,75,0.13);--gold3:rgba(232,184,75,0.06);
-  --teal:#4ECDC4;--teal2:rgba(78,205,196,0.1);
-  --text:#F0EEE6;--text2:rgba(240,238,230,0.6);--text3:rgba(240,238,230,0.32);
+  --bg:#0A0A0F;--bg2:#12121A;--bg3:#1A1A26;--surf:#1E1E2E;
+  --b:rgba(255,255,255,.07);--b2:rgba(255,255,255,.13);
+  --gold:#E8B84B;--gold2:rgba(232,184,75,.13);--gold3:rgba(232,184,75,.06);
+  --teal:#4ECDC4;--teal2:rgba(78,205,196,.1);
+  --txt:#F0EEE6;--txt2:rgba(240,238,230,.6);--txt3:rgba(240,238,230,.32);
   --r:8px;
-  /* CMS */
-  --cms-bg:#0D1117;--cms-surface:#161B22;--cms-border:#30363D;
-  --cms-blue:#58A6FF;--cms-green:#3FB950;--cms-red:#F85149;
+  --cms:#0D1117;--cms2:#161B22;--cmsb:#30363D;
+  --cblue:#58A6FF;--cgreen:#3FB950;--cred:#F85149;--corange:#E8B84B;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;cursor:none}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;cursor:none}
 ::selection{background:var(--gold);color:#000}
 a{text-decoration:none}
+img{max-width:100%;display:block}
 
-/* ═══════════════════════════════════════════════════════
-   CMS ADMIN PANEL
-═══════════════════════════════════════════════════════ */
-#cms-toggle{
-  position:fixed;bottom:2rem;right:2rem;z-index:10000;
-  width:52px;height:52px;border-radius:50%;
-  background:var(--gold);color:#000;border:none;cursor:pointer;
-  font-size:1.3rem;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(232,184,75,0.4);
-  transition:transform .2s,box-shadow .2s;
-}
-#cms-toggle:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(232,184,75,0.6)}
+/* ── CURSOR ── */
+#cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:8000;transform:translate(-50%,-50%);transition:width .15s,height .15s}
+#cur-r{position:fixed;width:32px;height:32px;border:1px solid rgba(232,184,75,.4);border-radius:50%;pointer-events:none;z-index:7999;transform:translate(-50%,-50%);transition:width .25s,height .25s}
 
-#cms-panel{
-  position:fixed;top:0;right:-520px;width:500px;height:100vh;
-  background:var(--cms-bg);border-left:1px solid var(--cms-border);
-  z-index:9999;transition:right .35s cubic-bezier(.4,0,.2,1);
-  display:flex;flex-direction:column;overflow:hidden;
-}
-#cms-panel.open{right:0}
+/* ══════════════════════════════════════════
+   CMS PANEL STYLES
+══════════════════════════════════════════ */
+#cms-fab{position:fixed;bottom:2rem;right:2rem;z-index:10000;width:54px;height:54px;border-radius:50%;background:var(--gold);color:#000;border:none;cursor:pointer;font-size:1.25rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(232,184,75,.45);transition:transform .2s,box-shadow .2s;font-weight:700}
+#cms-fab:hover{transform:scale(1.1);box-shadow:0 6px 32px rgba(232,184,75,.65)}
 
-.cms-header{
-  padding:1.2rem 1.4rem;background:var(--cms-surface);
-  border-bottom:1px solid var(--cms-border);
-  display:flex;align-items:center;justify-content:space-between;
-  flex-shrink:0;
-}
-.cms-title{font-size:.9rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:.6rem}
-.cms-title-badge{font-size:.6rem;background:var(--cms-green);color:#000;padding:.15rem .5rem;border-radius:100px;font-weight:700;letter-spacing:.05em}
-.cms-close{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:1.2rem;padding:.2rem;transition:color .2s}
-.cms-close:hover{color:var(--text)}
+#cms-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9000;opacity:0;pointer-events:none;transition:opacity .3s}
+#cms-overlay.on{opacity:1;pointer-events:all}
 
-.cms-tabs{display:flex;border-bottom:1px solid var(--cms-border);flex-shrink:0;overflow-x:auto}
-.cms-tab{
-  padding:.7rem 1rem;font-size:.72rem;font-weight:500;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--text3);cursor:pointer;
-  border-bottom:2px solid transparent;white-space:nowrap;
-  transition:all .2s;background:transparent;border-top:none;border-left:none;border-right:none;
-}
-.cms-tab.active{color:var(--cms-blue);border-bottom-color:var(--cms-blue)}
-.cms-tab:hover{color:var(--text2)}
+#cms{position:fixed;top:0;right:-620px;width:600px;height:100vh;background:var(--cms);border-left:1px solid var(--cmsb);z-index:9999;transition:right .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+#cms.open{right:0}
 
-.cms-body{flex:1;overflow-y:auto;padding:1.2rem 1.4rem}
-.cms-body::-webkit-scrollbar{width:4px}
-.cms-body::-webkit-scrollbar-track{background:transparent}
-.cms-body::-webkit-scrollbar-thumb{background:var(--cms-border);border-radius:2px}
+.ch{padding:1rem 1.4rem;background:var(--cms2);border-bottom:1px solid var(--cmsb);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ch-title{font-size:.9rem;font-weight:600;color:var(--txt);display:flex;align-items:center;gap:.6rem}
+.ch-badge{font-size:.58rem;background:var(--cgreen);color:#000;padding:.15rem .5rem;border-radius:100px;font-weight:700;letter-spacing:.04em}
+.ch-close{background:transparent;border:none;color:var(--txt3);cursor:pointer;font-size:1.2rem;padding:.3rem;transition:color .2s;line-height:1}
+.ch-close:hover{color:var(--txt)}
 
-.cms-section{display:none}
-.cms-section.active{display:block}
+.ct{display:flex;border-bottom:1px solid var(--cmsb);flex-shrink:0;overflow-x:auto}
+.ct::-webkit-scrollbar{height:0}
+.ctab{padding:.65rem .95rem;font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);cursor:pointer;border:none;border-bottom:2px solid transparent;background:transparent;white-space:nowrap;transition:all .2s}
+.ctab.on{color:var(--cblue);border-bottom-color:var(--cblue)}
+.ctab:hover:not(.on){color:var(--txt2)}
 
-.cms-group{margin-bottom:1.4rem}
-.cms-label{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem}
-.cms-label .req{color:var(--cms-blue);font-size:.6rem}
+.cb{flex:1;overflow-y:auto;padding:1.2rem 1.4rem}
+.cb::-webkit-scrollbar{width:3px}
+.cb::-webkit-scrollbar-thumb{background:var(--cmsb);border-radius:2px}
 
-.cms-input,.cms-textarea,.cms-select{
-  width:100%;background:var(--cms-surface);border:1px solid var(--cms-border);
-  color:var(--text);font-family:'Inter',sans-serif;font-size:.82rem;
-  padding:.55rem .8rem;border-radius:6px;outline:none;transition:border-color .2s;
-}
-.cms-input:focus,.cms-textarea:focus,.cms-select:focus{border-color:var(--cms-blue)}
-.cms-textarea{resize:vertical;min-height:72px;line-height:1.6}
-.cms-select{cursor:pointer}
-.cms-select option{background:var(--cms-surface)}
+.csec{display:none}
+.csec.on{display:block}
 
-.cms-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-.cms-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem}
-
-.cms-divider{height:1px;background:var(--cms-border);margin:1.2rem 0}
-.cms-section-title{font-size:.78rem;font-weight:600;color:var(--text2);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--cms-border)}
-
-/* Case study cards in CMS */
-.cms-case-list{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1rem}
-.cms-case-item{
-  background:var(--cms-surface);border:1px solid var(--cms-border);
-  border-radius:6px;padding:.8rem 1rem;cursor:pointer;
-  display:flex;align-items:center;justify-content:space-between;
-  transition:border-color .2s;
-}
-.cms-case-item:hover{border-color:var(--cms-blue)}
-.cms-case-item.editing{border-color:var(--cms-blue);background:rgba(88,166,255,0.05)}
-.cms-case-name{font-size:.82rem;font-weight:500;color:var(--text)}
-.cms-case-meta{font-size:.68rem;color:var(--text3)}
-.cms-case-badges{display:flex;gap:.4rem}
-.cms-badge{font-size:.58rem;padding:.15rem .45rem;border-radius:3px;font-weight:600}
-.cms-badge.hope{background:rgba(232,184,75,.15);color:var(--gold)}
-.cms-badge.pop{background:rgba(78,205,196,.1);color:var(--teal)}
-
-.cms-case-editor{background:rgba(88,166,255,0.04);border:1px solid rgba(88,166,255,.15);border-radius:6px;padding:1rem;margin-top:.6rem;display:none}
-.cms-case-editor.open{display:block}
+/* CMS form elements */
+.cg{margin-bottom:1.1rem}
+.cl{font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:.35rem;display:flex;align-items:center;gap:.3rem}
+.ci,.cta,.csel{width:100%;background:var(--cms2);border:1px solid var(--cmsb);color:var(--txt);font-family:'Inter',sans-serif;font-size:.82rem;padding:.5rem .75rem;border-radius:6px;outline:none;transition:border-color .2s}
+.ci:focus,.cta:focus,.csel:focus{border-color:var(--cblue)}
+.cta{resize:vertical;min-height:68px;line-height:1.6}
+.csel{cursor:pointer}
+.csel option{background:var(--cms2)}
+.cr{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.cr3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem}
+.cdiv{height:1px;background:var(--cmsb);margin:1.1rem 0}
+.cst{font-size:.75rem;font-weight:600;color:var(--txt2);margin-bottom:.9rem;padding-bottom:.45rem;border-bottom:1px solid var(--cmsb)}
 
 /* CMS buttons */
-.cms-btn{
-  font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
-  padding:.55rem 1.2rem;border-radius:5px;cursor:pointer;transition:all .2s;border:none;
-}
-.cms-btn-primary{background:var(--gold);color:#000}
-.cms-btn-primary:hover{opacity:.88}
-.cms-btn-secondary{background:transparent;color:var(--text2);border:1px solid var(--cms-border)}
-.cms-btn-secondary:hover{border-color:var(--text3);color:var(--text)}
-.cms-btn-danger{background:rgba(248,81,73,.15);color:var(--cms-red);border:1px solid rgba(248,81,73,.2)}
-.cms-btn-danger:hover{background:rgba(248,81,73,.25)}
-.cms-btn-sm{padding:.35rem .8rem;font-size:.68rem}
-.cms-btn-green{background:var(--cms-green);color:#000}
+.cb-{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1.1rem;border-radius:5px;cursor:pointer;transition:all .2s;border:none;font-family:'Inter',sans-serif}
+.cb-p{background:var(--gold);color:#000}
+.cb-p:hover{opacity:.85}
+.cb-s{background:transparent;color:var(--txt2);border:1px solid var(--cmsb)}
+.cb-s:hover{border-color:var(--txt3);color:var(--txt)}
+.cb-d{background:rgba(248,81,73,.12);color:var(--cred);border:1px solid rgba(248,81,73,.2)}
+.cb-d:hover{background:rgba(248,81,73,.22)}
+.cb-g{background:var(--cgreen);color:#000}
+.cb-g:hover{opacity:.88}
+.cb-sm{padding:.32rem .75rem;font-size:.65rem}
+.cact{display:flex;gap:.6rem;margin-top:.9rem;align-items:center;flex-wrap:wrap}
+.csaved{font-size:.7rem;color:var(--cgreen);opacity:0;transition:opacity .3s}
+.csaved.on{opacity:1}
 
-.cms-actions{display:flex;gap:.6rem;margin-top:1rem;align-items:center}
-.cms-save-msg{font-size:.72rem;color:var(--cms-green);opacity:0;transition:opacity .3s}
-.cms-save-msg.show{opacity:1}
+/* List items in CMS */
+.clist{display:flex;flex-direction:column;gap:.5rem;margin-bottom:.9rem}
+.citem{background:var(--cms2);border:1px solid var(--cmsb);border-radius:6px;padding:.75rem 1rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:.8rem;transition:border-color .2s}
+.citem:hover,.citem.ed{border-color:var(--cblue);background:rgba(88,166,255,.05)}
+.citem-left{flex:1;min-width:0}
+.citem-name{font-size:.82rem;font-weight:500;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.citem-meta{font-size:.66rem;color:var(--txt3);margin-top:.1rem}
+.citem-right{display:flex;gap:.35rem;flex-shrink:0}
+.cbadge{font-size:.56rem;padding:.15rem .42rem;border-radius:3px;font-weight:600}
+.cbadge-hope{background:rgba(232,184,75,.14);color:var(--gold)}
+.cbadge-pop{background:rgba(78,205,196,.1);color:var(--teal)}
+.cbadge-gray{background:rgba(255,255,255,.06);color:var(--txt3)}
 
-.cms-color-row{display:flex;align-items:center;gap:.6rem}
-.cms-color-row input[type=color]{width:36px;height:28px;border:1px solid var(--cms-border);border-radius:4px;cursor:pointer;padding:1px;background:var(--cms-surface)}
-.cms-color-row .cms-input{flex:1}
+.cadd{width:100%;padding:.55rem;border:1px dashed var(--cmsb);border-radius:6px;background:transparent;color:var(--txt3);font-size:.76rem;cursor:pointer;transition:all .2s;margin-bottom:.9rem;font-family:'Inter',sans-serif}
+.cadd:hover{border-color:var(--cblue);color:var(--cblue)}
 
-/* Add new case btn */
-.cms-add-btn{
-  width:100%;padding:.6rem;border:1px dashed var(--cms-border);border-radius:6px;
-  background:transparent;color:var(--text3);font-size:.78rem;cursor:pointer;
-  transition:all .2s;margin-bottom:1rem;
-}
-.cms-add-btn:hover{border-color:var(--cms-blue);color:var(--cms-blue)}
+/* Inline editor */
+.ced{background:rgba(88,166,255,.04);border:1px solid rgba(88,166,255,.15);border-radius:6px;padding:1rem;margin-top:.5rem;display:none}
+.ced.on{display:block}
+.ced-title{font-size:.72rem;font-weight:600;color:var(--cblue);margin-bottom:.9rem;display:flex;align-items:center;justify-content:space-between}
 
-/* Stats editor */
-.cms-stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-.cms-stat-card{background:var(--cms-surface);border:1px solid var(--cms-border);border-radius:6px;padding:.9rem}
-.cms-stat-num-preview{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--gold);line-height:1}
+/* Image upload */
+.img-upload{border:1.5px dashed var(--cmsb);border-radius:6px;padding:1rem;text-align:center;cursor:pointer;transition:border-color .2s;position:relative}
+.img-upload:hover{border-color:var(--cblue)}
+.img-upload input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.img-preview{width:60px;height:60px;border-radius:8px;object-fit:contain;margin:0 auto .5rem;background:var(--cms2);padding:4px}
+.img-upload-txt{font-size:.72rem;color:var(--txt3)}
+.img-upload-txt strong{color:var(--cblue)}
+.color-row{display:flex;align-items:center;gap:.6rem}
+.color-row input[type=color]{width:36px;height:30px;border:1px solid var(--cmsb);border-radius:4px;cursor:pointer;padding:1px;background:var(--cms2)}
+.color-row .ci{flex:1}
 
-/* ═══════════════════════════════════════════════════════
+/* Stats preview */
+.stat-prev{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--gold);line-height:1;margin-top:.2rem}
+
+/* ══════════════════════════════════════════
    PORTFOLIO STYLES
-═══════════════════════════════════════════════════════ */
-#cur{position:fixed;width:8px;height:8px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:8000;transform:translate(-50%,-50%)}
-#cur-r{position:fixed;width:32px;height:32px;border:1px solid rgba(232,184,75,0.4);border-radius:50%;pointer-events:none;z-index:7999;transform:translate(-50%,-50%);transition:width .25s,height .25s}
-
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 5vw;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,15,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--text);letter-spacing:.05em}
+══════════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 5vw;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--b)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--txt);letter-spacing:.04em}
 .logo em{color:var(--gold);font-style:normal}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-size:.74rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);transition:color .2s}
-.nav-links a:hover{color:var(--text)}
-.nav-hire{font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#000;padding:.5rem 1.4rem;border-radius:2px;transition:opacity .2s}
-.nav-hire:hover{opacity:.85}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);transition:color .2s}
+.nav-links a:hover{color:var(--txt)}
+.nhire{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:#000;padding:.48rem 1.3rem;border-radius:2px;transition:opacity .2s}
+.nhire:hover{opacity:.85}
 
 /* HERO */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:64px 5vw 0;position:relative;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1fr 400px;gap:5rem;align-items:center;max-width:1400px;margin:0 auto;width:100%;padding:5rem 0}
-.hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(232,184,75,0.055) 0%,transparent 70%);top:-100px;left:-100px;pointer-events:none}
-.hero-tag{display:inline-flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:var(--teal2);border:1px solid rgba(78,205,196,0.2);padding:.3rem .8rem;border-radius:100px;margin-bottom:1.8rem}
-.hero-tag-dot{width:6px;height:6px;background:var(--teal);border-radius:50%;animation:pulse 2s infinite}
+#hero{min-height:100vh;display:flex;align-items:center;padding:64px 5vw 0;position:relative;overflow:hidden}
+.hglow{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(232,184,75,.055) 0%,transparent 70%);top:-150px;left:-150px;pointer-events:none}
+.hgrid{display:grid;grid-template-columns:1fr 380px;gap:5rem;align-items:center;max-width:1400px;margin:0 auto;width:100%;padding:5rem 0}
+.htag{display:inline-flex;align-items:center;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:var(--teal2);border:1px solid rgba(78,205,196,.2);padding:.28rem .75rem;border-radius:100px;margin-bottom:1.6rem}
+.htag-dot{width:6px;height:6px;background:var(--teal);border-radius:50%;animation:pulse 2s infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-h1.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5.5vw,5rem);font-weight:700;line-height:1.02;letter-spacing:-.02em;margin-bottom:.4rem}
-h1.hero-name em{color:var(--gold);font-style:normal}
-.hero-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,1.8vw,1.45rem);font-style:italic;color:var(--text2);margin-bottom:1.8rem}
-.hero-desc{font-size:.94rem;line-height:1.82;color:var(--text2);max-width:520px;margin-bottom:2.4rem}
-.hero-desc strong{color:var(--text);font-weight:600}
-.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap}
-.btn-gold{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#000;padding:.78rem 1.7rem;border-radius:3px;transition:opacity .2s,transform .2s}
-.btn-gold:hover{opacity:.88;transform:translateY(-1px)}
-.btn-outline{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);padding:.78rem 1.7rem;border:1px solid var(--border2);border-radius:3px;transition:all .2s}
-.btn-outline:hover{color:var(--text);border-color:rgba(255,255,255,.25)}
-.hero-stats{display:flex;gap:2.8rem;margin-top:3rem;padding-top:2.8rem;border-top:1px solid var(--border)}
-.sn{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;color:var(--text);line-height:1}
-.sn em{color:var(--gold);font-style:normal}
-.sl-label{font-size:.68rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-top:.25rem}
-.hero-card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r);padding:1.8rem;position:relative;overflow:hidden}
-.hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--teal))}
-.hc-lbl{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem}
-.aw{display:flex;align-items:flex-start;gap:.8rem;padding:.7rem 0;border-bottom:1px solid var(--border)}
-.aw:last-child{border-bottom:none}
-.aw-ico{width:28px;height:28px;background:var(--gold2);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
-.aw-t{font-size:.8rem;font-weight:500;color:var(--text);line-height:1.35}
-.aw-y{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text3);margin-top:.12rem}
+h1.hn{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5.5vw,4.8rem);font-weight:700;line-height:1.02;letter-spacing:-.02em;margin-bottom:.35rem}
+h1.hn em{color:var(--gold);font-style:normal}
+.hsub{font-family:'Cormorant Garamond',serif;font-size:clamp(.95rem,1.8vw,1.4rem);font-style:italic;color:var(--txt2);margin-bottom:1.6rem}
+.hdesc{font-size:.93rem;line-height:1.82;color:var(--txt2);max-width:520px;margin-bottom:2.2rem}
+.hdesc strong{color:var(--txt);font-weight:600}
+.hbtns{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn-g{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--gold);color:#000;padding:.76rem 1.6rem;border-radius:3px;transition:opacity .2s,transform .2s}
+.btn-g:hover{opacity:.88;transform:translateY(-1px)}
+.btn-o{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);padding:.76rem 1.6rem;border:1px solid var(--b2);border-radius:3px;transition:all .2s}
+.btn-o:hover{color:var(--txt);border-color:rgba(255,255,255,.25)}
+.hstats{display:flex;gap:2.5rem;margin-top:2.8rem;padding-top:2.5rem;border-top:1px solid var(--b)}
+.snum{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--txt);line-height:1}
+.snum em{color:var(--gold);font-style:normal}
+.slbl{font-size:.66rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3);margin-top:.2rem}
+.hcard{background:var(--surf);border:1px solid var(--b2);border-radius:var(--r);padding:1.7rem;position:relative;overflow:hidden}
+.hcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--teal))}
+.hclbl{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem}
+.haw{display:flex;align-items:flex-start;gap:.75rem;padding:.65rem 0;border-bottom:1px solid var(--b)}
+.haw:last-child{border-bottom:none}
+.haw-ico{width:26px;height:26px;background:var(--gold2);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0}
+.haw-t{font-size:.78rem;font-weight:500;color:var(--txt);line-height:1.35}
+.haw-y{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--txt3);margin-top:.1rem}
 
 /* TICKER */
-#ticker{background:var(--bg3);padding:1.3rem 0;overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.ticker-track{display:flex;gap:2.5rem;animation:tick 35s linear infinite;white-space:nowrap}
-.ticker-track:hover{animation-play-state:paused}
+#ticker{background:var(--bg3);padding:1.2rem 0;overflow:hidden;border-top:1px solid var(--b);border-bottom:1px solid var(--b)}
+.ttrack{display:flex;gap:2.5rem;animation:tick 38s linear infinite;white-space:nowrap}
+.ttrack:hover{animation-play-state:paused}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.tick-i{display:inline-flex;align-items:center;gap:.5rem;font-size:.76rem;font-weight:500;color:var(--text3);flex-shrink:0}
-.tick-dot{width:4px;height:4px;background:var(--gold);border-radius:50%;opacity:.5}
+.ti{display:inline-flex;align-items:center;gap:.5rem;font-size:.74rem;font-weight:500;color:var(--txt3);flex-shrink:0}
+.td{width:4px;height:4px;background:var(--gold);border-radius:50%;opacity:.45}
+
+/* SECTIONS */
+.sec{padding:6.5rem 5vw}
+.sl{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.65rem;margin-bottom:.75rem}
+.sl::before{content:'';width:20px;height:1px;background:var(--gold)}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.9rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:2.5rem}
 
 /* ABOUT */
-#about{background:var(--bg2);padding:7rem 5vw}
-.about-g{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1400px;margin:0 auto}
-.ap{font-size:.93rem;line-height:1.85;color:var(--text2);margin-bottom:1.3rem}
-.ap strong{color:var(--text);font-weight:600}
-.skills-g{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
-.sk{background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--gold);border-radius:var(--r);padding:1rem 1.2rem;transition:transform .2s}
+#about{background:var(--bg2)}
+.ag{display:grid;grid-template-columns:1fr 1fr;gap:5rem;max-width:1400px;margin:0 auto}
+.ap{font-size:.92rem;line-height:1.85;color:var(--txt2);margin-bottom:1.2rem}
+.ap strong{color:var(--txt);font-weight:600}
+.skg{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.sk{background:var(--surf);border:1px solid var(--b);border-left:2px solid var(--gold);border-radius:var(--r);padding:.95rem 1.1rem;transition:transform .2s}
 .sk:hover{transform:translateX(3px)}
-.sk-c{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
-.sk-i{font-size:.8rem;line-height:1.65;color:var(--text2)}
+.skc{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.ski{font-size:.78rem;line-height:1.65;color:var(--txt2)}
 
 /* EXPERIENCE */
-#experience{padding:7rem 5vw;background:var(--bg)}
+#experience{background:var(--bg)}
 .tl{position:relative;max-width:1400px;margin:0 auto}
-.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border2)}
-.tl-item{display:grid;grid-template-columns:190px 1fr;gap:3rem;padding:0 0 3.2rem 2rem;position:relative}
-.tl-item::before{content:'';position:absolute;left:-4px;top:5px;width:9px;height:9px;background:var(--gold);border-radius:50%;border:2px solid var(--bg)}
-.tl-per{font-family:'JetBrains Mono',monospace;font-size:.67rem;letter-spacing:.06em;color:var(--text3);margin-bottom:.3rem}
-.tl-co{font-size:.78rem;font-weight:600;color:var(--teal)}
-.tl-role{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;margin-bottom:.3rem}
-.tl-loc{font-size:.74rem;color:var(--text3);margin-bottom:.9rem}
-.tl-ul{list-style:none}
-.tl-ul li{font-size:.87rem;line-height:1.72;color:var(--text2);padding:.22rem 0 .22rem 1.1rem;position:relative}
-.tl-ul li::before{content:'›';position:absolute;left:0;color:var(--gold)}
-.tl-ul li strong{color:var(--text);font-weight:600}
+.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--b2)}
+.tli{display:grid;grid-template-columns:180px 1fr;gap:2.8rem;padding:0 0 3rem 2rem;position:relative}
+.tli::before{content:'';position:absolute;left:-4px;top:5px;width:9px;height:9px;background:var(--gold);border-radius:50%;border:2px solid var(--bg)}
+.tlper{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.06em;color:var(--txt3);margin-bottom:.25rem}
+.tlco{font-size:.77rem;font-weight:600;color:var(--teal)}
+.tlrole{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;margin-bottom:.25rem}
+.tlloc{font-size:.73rem;color:var(--txt3);margin-bottom:.85rem}
+.tlul{list-style:none}
+.tlul li{font-size:.86rem;line-height:1.72;color:var(--txt2);padding:.2rem 0 .2rem 1rem;position:relative}
+.tlul li::before{content:'›';position:absolute;left:0;color:var(--gold)}
+.tlul li strong{color:var(--txt);font-weight:600}
 
 /* CASES */
-#cases{background:var(--bg2);padding:7rem 5vw}
-.cs-intro{font-size:.92rem;line-height:1.8;color:var(--text2);max-width:600px;margin-bottom:1.4rem}
-.plat-pills{display:flex;gap:.7rem;margin-bottom:2.2rem;flex-wrap:wrap}
-.pp{display:inline-flex;align-items:center;gap:.45rem;font-size:.7rem;font-weight:600;letter-spacing:.06em;padding:.32rem .9rem;border-radius:100px}
+#cases{background:var(--bg2)}
+.cintro{font-size:.9rem;line-height:1.8;color:var(--txt2);max-width:580px;margin-bottom:1.3rem}
+.ppills{display:flex;gap:.6rem;margin-bottom:2rem;flex-wrap:wrap}
+.pp{display:inline-flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:600;letter-spacing:.06em;padding:.28rem .85rem;border-radius:100px}
 .pp.hope{background:rgba(232,184,75,.1);color:var(--gold);border:1px solid rgba(232,184,75,.2)}
 .pp.pop{background:rgba(78,205,196,.1);color:var(--teal);border:1px solid rgba(78,205,196,.2)}
-.pp .dot{width:6px;height:6px;border-radius:50%}
-.pp.hope .dot{background:var(--gold)}
-.pp.pop .dot{background:var(--teal)}
-.ftabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.2rem}
-.ft{font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .85rem;background:transparent;border:1px solid var(--border2);color:var(--text3);cursor:pointer;border-radius:3px;transition:all .2s}
+.ppd{width:6px;height:6px;border-radius:50%}
+.pp.hope .ppd{background:var(--gold)}
+.pp.pop .ppd{background:var(--teal)}
+.ftabs{display:flex;gap:.45rem;flex-wrap:wrap;margin-bottom:2rem}
+.ft{font-family:'JetBrains Mono',monospace;font-size:.61rem;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .8rem;background:transparent;border:1px solid var(--b2);color:var(--txt3);cursor:pointer;border-radius:3px;transition:all .2s}
 .ft:hover,.ft.on{background:var(--gold);border-color:var(--gold);color:#000}
-.cg{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.cc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);display:flex;flex-direction:column;transition:all .28s;overflow:hidden}
-.cc:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 16px 50px rgba(0,0,0,.4)}
-.cc-accent{height:2px}
-.cc-accent.hope{background:linear-gradient(90deg,var(--gold),rgba(232,184,75,.15))}
-.cc-accent.pop{background:linear-gradient(90deg,var(--teal),rgba(78,205,196,.1))}
-.cc-head{padding:1.3rem 1.3rem .7rem;display:flex;align-items:flex-start;justify-content:space-between;gap:.7rem}
-.brand-logo{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.75rem}
-.cc-sector{font-family:'JetBrains Mono',monospace;font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:.25rem}
-.cc-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:var(--text);line-height:1.2}
-.plat-badge{font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;padding:.18rem .5rem;border-radius:3px;flex-shrink:0}
-.plat-badge.hope{background:rgba(232,184,75,.12);color:var(--gold);border:1px solid rgba(232,184,75,.2)}
-.plat-badge.pop{background:rgba(78,205,196,.1);color:var(--teal);border:1px solid rgba(78,205,196,.2)}
-.cc-scale{font-size:.74rem;color:var(--text3);padding:.4rem 1.3rem .8rem;border-bottom:1px solid var(--border)}
-.cc-body{padding:1rem 1.3rem;flex:1}
-.cc-lbl{font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem;margin-top:.75rem}
-.cc-lbl:first-child{margin-top:0}
-.lbl-p{color:#FF8B8B}
-.lbl-s{color:var(--teal)}
-.cc-txt{font-size:.8rem;line-height:1.65;color:var(--text2)}
-.cc-metrics{display:flex;gap:.45rem;flex-wrap:wrap;padding:.9rem 1.3rem;border-top:1px solid var(--border)}
-.cm{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--gold);padding:.16rem .48rem;border:1px solid rgba(232,184,75,.2);border-radius:2px;background:var(--gold3)}
+.cgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+
+/* Case card */
+.cc{background:var(--surf);border:1px solid var(--b);border-radius:var(--r);display:flex;flex-direction:column;transition:all .28s;overflow:hidden}
+.cc:hover{border-color:var(--b2);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.ccacc{height:2px}
+.ccacc.hope{background:linear-gradient(90deg,var(--gold),rgba(232,184,75,.1))}
+.ccacc.pop{background:linear-gradient(90deg,var(--teal),rgba(78,205,196,.08))}
+.cchead{padding:1.2rem 1.2rem .65rem;display:flex;align-items:flex-start;gap:.7rem}
+.cclogo{width:46px;height:46px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;background:var(--bg3)}
+.cclogo img{width:100%;height:100%;object-fit:contain;padding:4px}
+.cclogo-txt{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:700;color:#fff;text-align:center;padding:2px}
+.ccmeta{flex:1;min-width:0}
+.ccsec{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt3);margin-bottom:.22rem}
+.ccname{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:var(--txt);line-height:1.2}
+.ccbadge{font-family:'JetBrains Mono',monospace;font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;padding:.16rem .46rem;border-radius:3px;flex-shrink:0;align-self:flex-start}
+.ccbadge.hope{background:rgba(232,184,75,.12);color:var(--gold);border:1px solid rgba(232,184,75,.18)}
+.ccbadge.pop{background:rgba(78,205,196,.1);color:var(--teal);border:1px solid rgba(78,205,196,.18)}
+.ccscale{font-size:.72rem;color:var(--txt3);padding:.35rem 1.2rem .75rem;border-bottom:1px solid var(--b)}
+.ccbody{padding:.95rem 1.2rem;flex:1}
+.cclbl{font-family:'JetBrains Mono',monospace;font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.28rem;margin-top:.7rem}
+.cclbl:first-child{margin-top:0}
+.lp{color:#FF8B8B}.ls{color:var(--teal)}
+.cctxt{font-size:.78rem;line-height:1.65;color:var(--txt2)}
+.ccmetrics{display:flex;gap:.4rem;flex-wrap:wrap;padding:.85rem 1.2rem;border-top:1px solid var(--b)}
+.cm{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--gold);padding:.14rem .44rem;border:1px solid rgba(232,184,75,.18);border-radius:2px;background:var(--gold3)}
+
+/* Testimonial on card */
+.cctestimonial{padding:.85rem 1.2rem;border-top:1px solid var(--b);background:rgba(232,184,75,.03)}
+.cctesti-text{font-size:.78rem;font-style:italic;color:var(--txt2);line-height:1.6;margin-bottom:.5rem}
+.cctesti-text::before{content:'"';color:var(--gold);font-size:1.1rem;font-family:'Cormorant Garamond',serif}
+.cctesti-text::after{content:'"';color:var(--gold);font-size:1.1rem;font-family:'Cormorant Garamond',serif}
+.cctesti-by{font-size:.68rem;font-weight:600;color:var(--txt3)}
 
 /* ACHIEVEMENTS */
-#achievements{background:var(--bg);padding:7rem 5vw}
-.ach-g{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;max-width:1400px;margin-left:auto;margin-right:auto}
-.ac{background:var(--surface);border:1px solid var(--border);border-top:2px solid var(--gold);border-radius:var(--r);padding:1.6rem 1.3rem;text-align:center;transition:transform .2s}
+#achievements{background:var(--bg)}
+.achg{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.2rem;max-width:1400px;margin-left:auto;margin-right:auto}
+.ac{background:var(--surf);border:1px solid var(--b);border-top:2px solid var(--gold);border-radius:var(--r);padding:1.5rem 1.2rem;text-align:center;transition:transform .2s}
 .ac:hover{transform:translateY(-3px)}
-.ac-n{font-family:'Cormorant Garamond',serif;font-size:2.3rem;font-weight:700;color:var(--text);line-height:1}
-.ac-n em{color:var(--gold);font-style:normal}
-.ac-l{font-size:.73rem;color:var(--text2);margin-top:.4rem;line-height:1.5}
-.awards-g{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;max-width:1400px;margin:0 auto}
-.aw-s{display:flex;align-items:center;gap:.8rem;padding:.95rem 1.1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);transition:border-color .2s}
-.aw-s:hover{border-color:var(--border2)}
-.aw-s-i{font-size:1rem;flex-shrink:0}
-.aw-s-t{font-size:.8rem;font-weight:500;color:var(--text)}
-.aw-s-y{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--text3);margin-top:.1rem}
+.acn{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--txt);line-height:1}
+.acn em{color:var(--gold);font-style:normal}
+.acl{font-size:.72rem;color:var(--txt2);margin-top:.35rem;line-height:1.5}
+.awg{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;max-width:1400px;margin:0 auto}
+.aws{display:flex;align-items:center;gap:.75rem;padding:.9rem 1rem;background:var(--surf);border:1px solid var(--b);border-radius:var(--r);transition:border-color .2s}
+.aws:hover{border-color:var(--b2)}
+.awsi{font-size:.95rem;flex-shrink:0}
+.awst{font-size:.78rem;font-weight:500;color:var(--txt)}
+.awsy{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--txt3);margin-top:.1rem}
 
 /* CONTACT */
-#contact{background:var(--bg2);padding:8rem 5vw;text-align:center}
-.ct-sub{font-size:.9rem;color:var(--text2);max-width:460px;margin:0 auto 2.5rem;line-height:1.75}
-.ct-links{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.8rem}
-.ct-l{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);border:1px solid var(--border2);padding:.72rem 1.5rem;border-radius:4px;transition:all .2s}
-.ct-l:hover{background:var(--gold);color:#000;border-color:var(--gold)}
-.ct-d{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text3);letter-spacing:.06em}
+#contact{background:var(--bg2);padding:7.5rem 5vw;text-align:center}
+#contact .sl{justify-content:center}
+#contact .sl::before{display:none}
+#contact h2{margin-bottom:.75rem}
+.ctsub{font-size:.88rem;color:var(--txt2);max-width:440px;margin:0 auto 2.2rem;line-height:1.75}
+.ctlinks{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.6rem}
+.ctl{display:inline-flex;align-items:center;gap:.4rem;font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);border:1px solid var(--b2);padding:.7rem 1.4rem;border-radius:4px;transition:all .2s}
+.ctl:hover{background:var(--gold);color:#000;border-color:var(--gold)}
+.ctd{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--txt3);letter-spacing:.05em}
 
-footer{background:#050508;padding:1.4rem 5vw;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
-.fl{font-family:'Cormorant Garamond',serif;font-size:.88rem;color:var(--text3)}
+footer{background:#050508;padding:1.3rem 5vw;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--b)}
+.fl{font-family:'Cormorant Garamond',serif;font-size:.85rem;color:var(--txt3)}
 .fl em{color:var(--gold);font-style:normal}
-.fn{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:rgba(255,255,255,.13);letter-spacing:.06em}
+.fn{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:rgba(255,255,255,.12);letter-spacing:.06em}
 
-/* SECTION LABELS */
-.sl2{font-family:'JetBrains Mono',monospace;font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.7rem;margin-bottom:.8rem}
-.sl2::before{content:'';width:22px;height:1px;background:var(--gold)}
-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.8vw,3rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;margin-bottom:2.8rem}
-
-/* SCROLL REVEAL */
+/* Scroll reveal */
 .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .rv.on{opacity:1;transform:translateY(0)}
 
-/* RESPONSIVE */
-@media(max-width:1100px){.hero-grid{grid-template-columns:1fr}.hero-card{display:none}.cg{grid-template-columns:1fr 1fr}.ach-g{grid-template-columns:1fr 1fr}.awards-g{grid-template-columns:1fr}.about-g{grid-template-columns:1fr;gap:2rem}}
-@media(max-width:680px){.nav-links,.nav-hire{display:none}.cg{grid-template-columns:1fr}.tl-item{grid-template-columns:1fr;gap:.5rem}.hero-stats{flex-wrap:wrap;gap:1.5rem}.skills-g{grid-template-columns:1fr}#cms-panel{width:100vw}}
+/* Responsive */
+@media(max-width:1100px){.hgrid{grid-template-columns:1fr}.hcard{display:none}.cgrid{grid-template-columns:1fr 1fr}.achg{grid-template-columns:1fr 1fr}.awg{grid-template-columns:1fr}.ag{grid-template-columns:1fr;gap:2rem}}
+@media(max-width:700px){.nav-links,.nhire{display:none}.cgrid{grid-template-columns:1fr}.tli{grid-template-columns:1fr;gap:.5rem}.hstats{flex-wrap:wrap;gap:1.5rem}.skg{grid-template-columns:1fr}#cms{width:100vw}}
 </style>
 </head>
 <body>
 
-<div id="cur"></div>
-<div id="cur-r"></div>
+<div id="cur"></div><div id="cur-r"></div>
 
-<!-- ═══════════ CMS TOGGLE BUTTON ═══════════ -->
-<button id="cms-toggle" title="Open CMS Editor" onclick="toggleCMS()">✏️</button>
+<!-- ════════════════════════════════════════
+     CMS FAB + PANEL
+════════════════════════════════════════ -->
+<button id="cms-fab" onclick="cmsToggle()" title="Open CMS Editor">✏️</button>
+<div id="cms-overlay" onclick="cmsToggle()"></div>
 
-<!-- ═══════════════════════════════════════════
-     CMS PANEL
-═══════════════════════════════════════════ -->
-<div id="cms-panel">
-  <div class="cms-header">
-    <div class="cms-title">✏️ Portfolio CMS <span class="cms-title-badge">LIVE EDIT</span></div>
-    <button class="cms-close" onclick="toggleCMS()">✕</button>
+<div id="cms">
+  <div class="ch">
+    <div class="ch-title">✏️ Portfolio Editor <span class="ch-badge">LIVE</span></div>
+    <button class="ch-close" onclick="cmsToggle()">✕</button>
   </div>
-
-  <div class="cms-tabs">
-    <button class="cms-tab active" onclick="cmsTab('hero',this)">Hero</button>
-    <button class="cms-tab" onclick="cmsTab('about',this)">About</button>
-    <button class="cms-tab" onclick="cmsTab('experience',this)">Experience</button>
-    <button class="cms-tab" onclick="cmsTab('cases',this)">Case Studies</button>
-    <button class="cms-tab" onclick="cmsTab('achievements',this)">Awards</button>
-    <button class="cms-tab" onclick="cmsTab('contact',this)">Contact</button>
+  <div class="ct">
+    <button class="ctab on" onclick="cTab('hero',this)">Hero</button>
+    <button class="ctab" onclick="cTab('about',this)">About</button>
+    <button class="ctab" onclick="cTab('exp',this)">Experience</button>
+    <button class="ctab" onclick="cTab('cases',this)">Case Studies</button>
+    <button class="ctab" onclick="cTab('ach',this)">Awards</button>
+    <button class="ctab" onclick="cTab('contact',this)">Contact</button>
+    <button class="ctab" onclick="cTab('settings',this)">Settings</button>
   </div>
+  <div class="cb">
 
-  <div class="cms-body">
-
-    <!-- ── HERO TAB ── -->
-    <div class="cms-section active" id="cms-hero">
-      <div class="cms-section-title">Hero Section</div>
-      <div class="cms-group">
-        <div class="cms-label">Status Tag</div>
-        <input class="cms-input" id="c-tag" value="Open to FAANG &amp; Top SaaS Sales Roles" oninput="liveUpdate('hero-tag-text',this.value)">
+    <!-- HERO -->
+    <div class="csec on" id="csec-hero">
+      <div class="cst">Hero Section</div>
+      <div class="cg"><div class="cl">Status Tag</div><input class="ci" id="f-tag" oninput="lu('htag-txt',this.value)"></div>
+      <div class="cr">
+        <div class="cg"><div class="cl">First Name</div><input class="ci" id="f-fn" oninput="lu('hfn',this.value)"></div>
+        <div class="cg"><div class="cl">Last Name (gold)</div><input class="ci" id="f-ln" oninput="lu('hln',this.value)"></div>
       </div>
-      <div class="cms-row">
-        <div class="cms-group">
-          <div class="cms-label">First Name</div>
-          <input class="cms-input" id="c-fname" value="Umesh" oninput="liveUpdate('hero-first',this.value)">
-        </div>
-        <div class="cms-group">
-          <div class="cms-label">Last Name <span class="req">(gold)</span></div>
-          <input class="cms-input" id="c-lname" value="Daftari" oninput="liveUpdate('hero-last',this.value)">
-        </div>
-      </div>
-      <div class="cms-group">
-        <div class="cms-label">Subtitle / Title</div>
-        <input class="cms-input" id="c-subtitle" value="Enterprise SaaS Sales Leader" oninput="liveUpdate('hero-subtitle-text',this.value)">
-      </div>
-      <div class="cms-group">
-        <div class="cms-label">Hero Description</div>
-        <textarea class="cms-textarea" id="c-desc" oninput="liveUpdate('hero-desc-text',this.value)">5+ years closing Fortune 500 deals across India, UAE, USA &amp; UK. From Coca-Cola to McDonald's — I close with conviction, scale with systems, and grow with data. Currently at PopProbe &amp; HOPE Research Group.</textarea>
-      </div>
-      <div class="cms-divider"></div>
-      <div class="cms-section-title">Hero Stats (4 numbers)</div>
-      <div class="cms-stats-grid">
-        <div class="cms-stat-card">
-          <div class="cms-label">Stat 1 Number</div>
-          <input class="cms-input" id="c-s1n" value="77%" oninput="liveUpdate('stat1-num',this.value)" style="margin-bottom:.5rem">
-          <div class="cms-label">Stat 1 Label</div>
-          <input class="cms-input" id="c-s1l" value="Sales Growth · 12mo" oninput="liveUpdate('stat1-lbl',this.value)">
-        </div>
-        <div class="cms-stat-card">
-          <div class="cms-label">Stat 2 Number</div>
-          <input class="cms-input" id="c-s2n" value="23+" oninput="liveUpdate('stat2-num',this.value)" style="margin-bottom:.5rem">
-          <div class="cms-label">Stat 2 Label</div>
-          <input class="cms-input" id="c-s2l" value="Enterprise Clients" oninput="liveUpdate('stat2-lbl',this.value)">
-        </div>
-        <div class="cms-stat-card">
-          <div class="cms-label">Stat 3 Number</div>
-          <input class="cms-input" id="c-s3n" value="₹1Cr+" oninput="liveUpdate('stat3-num',this.value)" style="margin-bottom:.5rem">
-          <div class="cms-label">Stat 3 Label</div>
-          <input class="cms-input" id="c-s3l" value="ARR Generated" oninput="liveUpdate('stat3-lbl',this.value)">
-        </div>
-        <div class="cms-stat-card">
-          <div class="cms-label">Stat 4 Number</div>
-          <input class="cms-input" id="c-s4n" value="6" oninput="liveUpdate('stat4-num',this.value)" style="margin-bottom:.5rem">
-          <div class="cms-label">Stat 4 Label</div>
-          <input class="cms-input" id="c-s4l" value="Global Markets" oninput="liveUpdate('stat4-lbl',this.value)">
-        </div>
-      </div>
-      <div class="cms-divider"></div>
-      <div class="cms-section-title">CTA Buttons</div>
-      <div class="cms-row">
-        <div class="cms-group">
-          <div class="cms-label">Primary Button Text</div>
-          <input class="cms-input" id="c-btn1t" value="View Case Studies →" oninput="liveUpdate('btn-primary-text',this.value)">
-        </div>
-        <div class="cms-group">
-          <div class="cms-label">Primary Button Link</div>
-          <input class="cms-input" id="c-btn1l" value="#cases" oninput="document.getElementById('hero-btn-primary').href=this.value">
-        </div>
-      </div>
-      <div class="cms-actions">
-        <button class="cms-btn cms-btn-primary" onclick="saveSection('hero')">Save Hero</button>
-        <span class="cms-save-msg" id="msg-hero">✓ Saved!</span>
-      </div>
+      <div class="cg"><div class="cl">Job Title / Subtitle</div><input class="ci" id="f-title" oninput="lu('hsub',this.value)"></div>
+      <div class="cg"><div class="cl">Description Paragraph</div><textarea class="cta" id="f-desc" oninput="document.getElementById('hdesc-txt').innerHTML=this.value"></textarea></div>
+      <div class="cdiv"></div>
+      <div class="cst">4 Stats</div>
+      <div id="stats-ed"></div>
+      <div class="cdiv"></div>
+      <div class="cst">Hero Awards Card (sidebar)</div>
+      <div id="heroawards-ed"></div>
+      <button class="cadd" onclick="addHeroAward()">+ Add Award to Card</button>
+      <div class="cact"><button class="cb- cb-p" onclick="save('hero')">Save Hero</button><span class="csaved" id="sv-hero">✓ Saved</span></div>
     </div>
 
-    <!-- ── ABOUT TAB ── -->
-    <div class="cms-section" id="cms-about">
-      <div class="cms-section-title">About Section</div>
-      <div class="cms-group">
-        <div class="cms-label">Section Label</div>
-        <input class="cms-input" id="c-about-label" value="About Me" oninput="liveUpdate('about-label',this.value)">
-      </div>
-      <div class="cms-group">
-        <div class="cms-label">Section Title</div>
-        <input class="cms-input" id="c-about-title" value="I don't pitch products. I solve problems." oninput="liveUpdate('about-title',this.value)">
-      </div>
-      <div class="cms-group">
-        <div class="cms-label">Paragraph 1</div>
-        <textarea class="cms-textarea" id="c-ap1" oninput="liveUpdate('about-p1',this.value)">I'm an Enterprise SaaS Sales professional based in Bengaluru with 5+ years closing complex B2B deals across India, UAE, USA and UK. I specialize in full-cycle sales — cold outreach, product demos, CXO negotiation, and multi-year contract closure.</textarea>
-      </div>
-      <div class="cms-group">
-        <div class="cms-label">Paragraph 2</div>
-        <textarea class="cms-textarea" id="c-ap2" oninput="liveUpdate('about-p2',this.value)">At HOPE Research Group, I grew from BDE to Sales Manager, generating ₹1+ Crore in ARR and closing Fortune 500 clients across 6 global markets including Coca-Cola, Nestlé, Rolex and Burger King.</textarea>
-      </div>
-      <div class="cms-group">
-        <div class="cms-label">Paragraph 3</div>
-        <textarea class="cms-textarea" id="c-ap3" oninput="liveUpdate('about-p3',this.value)">At PopProbe, I sell India's leading offline-first operations execution platform to multi-store F&B and retail brands — managing the full pipeline from outbound to close across top QSR, retail and hospitality chains.</textarea>
-      </div>
-      <div class="cms-divider"></div>
-      <div class="cms-section-title">Skills (6 cards)</div>
-      <div id="skills-editor"></div>
-      <div class="cms-actions">
-        <button class="cms-btn cms-btn-primary" onclick="saveSection('about')">Save About</button>
-        <span class="cms-save-msg" id="msg-about">✓ Saved!</span>
-      </div>
+    <!-- ABOUT -->
+    <div class="csec" id="csec-about">
+      <div class="cst">About Paragraphs</div>
+      <div id="about-paras-ed"></div>
+      <button class="cadd" onclick="addAboutPara()">+ Add Paragraph</button>
+      <div class="cdiv"></div>
+      <div class="cst">Skills Cards</div>
+      <div id="skills-ed"></div>
+      <button class="cadd" onclick="addSkill()">+ Add Skill Card</button>
+      <div class="cact"><button class="cb- cb-p" onclick="save('about')">Save About</button><span class="csaved" id="sv-about">✓ Saved</span></div>
     </div>
 
-    <!-- ── EXPERIENCE TAB ── -->
-    <div class="cms-section" id="cms-experience">
-      <div class="cms-section-title">Experience — 4 Roles</div>
-      <div id="exp-editor"></div>
-      <div class="cms-actions">
-        <button class="cms-btn cms-btn-primary" onclick="saveSection('experience')">Save Experience</button>
-        <span class="cms-save-msg" id="msg-experience">✓ Saved!</span>
-      </div>
+    <!-- EXPERIENCE -->
+    <div class="csec" id="csec-exp">
+      <div class="cst">Work Experience</div>
+      <div class="clist" id="exp-list"></div>
+      <button class="cadd" onclick="addExp()">+ Add Experience</button>
+      <div id="exp-ed-area"></div>
+      <div class="cact"><button class="cb- cb-p" onclick="save('exp')">Save Experience</button><span class="csaved" id="sv-exp">✓ Saved</span></div>
     </div>
 
-    <!-- ── CASES TAB ── -->
-    <div class="cms-section" id="cms-cases">
-      <div class="cms-section-title">Case Studies</div>
-      <p style="font-size:.76rem;color:var(--text3);margin-bottom:1rem">Click any client to edit. Changes update live on the page.</p>
-      <button class="cms-add-btn" onclick="addCase()">+ Add New Case Study</button>
-      <div class="cms-case-list" id="cms-case-list"></div>
-      <div id="case-editor-area"></div>
-      <div class="cms-actions">
-        <button class="cms-btn cms-btn-primary" onclick="saveSection('cases')">Save All Cases</button>
-        <span class="cms-save-msg" id="msg-cases">✓ Saved!</span>
-      </div>
+    <!-- CASE STUDIES -->
+    <div class="csec" id="csec-cases">
+      <div class="cst">Case Studies & Clients</div>
+      <p style="font-size:.72rem;color:var(--txt3);margin-bottom:.8rem">Click any client to edit. Upload logo image for each client.</p>
+      <div class="clist" id="cases-list"></div>
+      <button class="cadd" onclick="addCase()">+ Add New Client / Case Study</button>
+      <div id="case-ed-area"></div>
+      <div class="cact"><button class="cb- cb-p" onclick="save('cases')">Save All Cases</button><span class="csaved" id="sv-cases">✓ Saved</span></div>
     </div>
 
-    <!-- ── ACHIEVEMENTS TAB ── -->
-    <div class="cms-section" id="cms-achievements">
-      <div class="cms-section-title">Achievement Numbers</div>
-      <div id="ach-editor"></div>
-      <div class="cms-divider"></div>
-      <div class="cms-section-title">Awards & Certifications</div>
-      <div id="awards-editor"></div>
-      <div class="cms-actions">
-        <button class="cms-btn cms-btn-primary" onclick="saveSection('achievements')">Save Achievements</button>
-        <span class="cms-save-msg" id="msg-achievements">✓ Saved!</span>
-      </div>
+    <!-- ACHIEVEMENTS -->
+    <div class="csec" id="csec-ach">
+      <div class="cst">Achievement Numbers</div>
+      <div id="ach-ed"></div>
+      <button class="cadd" onclick="addAch()">+ Add Stat</button>
+      <div class="cdiv"></div>
+      <div class="cst">Awards & Certifications</div>
+      <div id="awards-ed"></div>
+      <button class="cadd" onclick="addAward()">+ Add Award</button>
+      <div class="cact"><button class="cb- cb-p" onclick="save('ach')">Save Achievements</button><span class="csaved" id="sv-ach">✓ Saved</span></div>
     </div>
 
-    <!-- ── CONTACT TAB ── -->
-    <div class="cms-section" id="cms-contact">
-      <div class="cms-section-title">Contact Info</div>
-      <div class="cms-group">
-        <div class="cms-label">Section Title</div>
-        <input class="cms-input" id="c-ct-title" value="Open to FAANG &amp; top SaaS roles." oninput="liveUpdate('contact-title',this.value)">
+    <!-- CONTACT -->
+    <div class="csec" id="csec-contact">
+      <div class="cst">Contact Details</div>
+      <div class="cg"><div class="cl">Section Title</div><input class="ci" id="f-ct" oninput="lu('ct-title',this.value)"></div>
+      <div class="cg"><div class="cl">Subtitle Text</div><textarea class="cta" id="f-csub" oninput="lu('ct-sub',this.value)"></textarea></div>
+      <div class="cr">
+        <div class="cg"><div class="cl">Email</div><input class="ci" id="f-email" oninput="refreshContact()"></div>
+        <div class="cg"><div class="cl">Phone</div><input class="ci" id="f-phone" oninput="refreshContact()"></div>
       </div>
-      <div class="cms-group">
-        <div class="cms-label">Subtitle Text</div>
-        <textarea class="cms-textarea" id="c-ct-sub" oninput="liveUpdate('contact-sub',this.value)">Available for Enterprise Sales, Account Executive, BDM and Sales Manager roles across India and global markets. Let's build something big.</textarea>
-      </div>
-      <div class="cms-group">
-        <div class="cms-label">Email Address</div>
-        <input class="cms-input" id="c-email" value="daftariumesh@gmail.com" oninput="updateContact()">
-      </div>
-      <div class="cms-group">
-        <div class="cms-label">Phone Number</div>
-        <input class="cms-input" id="c-phone" value="+91-9443793635" oninput="updateContact()">
-      </div>
-      <div class="cms-group">
-        <div class="cms-label">LinkedIn URL</div>
-        <input class="cms-input" id="c-linkedin" value="https://linkedin.com/in/umeshdaftari" oninput="updateContact()">
-      </div>
-      <div class="cms-group">
-        <div class="cms-label">Location</div>
-        <input class="cms-input" id="c-location" value="Bengaluru, India" oninput="updateContact()">
-      </div>
-      <div class="cms-divider"></div>
-      <div class="cms-section-title">Navigation & Footer</div>
-      <div class="cms-group">
-        <div class="cms-label">Logo Text</div>
-        <input class="cms-input" id="c-logo" value="U" oninput="updateLogo(this.value)">
-      </div>
-      <div class="cms-group">
-        <div class="cms-label">Hire Me Button Text</div>
-        <input class="cms-input" id="c-hire" value="Hire Me →" oninput="liveUpdate('nav-hire-text',this.value)">
-      </div>
-      <div class="cms-actions">
-        <button class="cms-btn cms-btn-primary" onclick="saveSection('contact')">Save Contact</button>
-        <span class="cms-save-msg" id="msg-contact">✓ Saved!</span>
-      </div>
+      <div class="cg"><div class="cl">LinkedIn URL</div><input class="ci" id="f-li" oninput="refreshContact()"></div>
+      <div class="cg"><div class="cl">Location</div><input class="ci" id="f-loc" oninput="refreshContact()"></div>
+      <div class="cact"><button class="cb- cb-p" onclick="save('contact')">Save Contact</button><span class="csaved" id="sv-contact">✓ Saved</span></div>
     </div>
 
-  </div><!-- end cms-body -->
-</div><!-- end cms-panel -->
+    <!-- SETTINGS -->
+    <div class="csec" id="csec-settings">
+      <div class="cst">Site Settings</div>
+      <div class="cg"><div class="cl">Logo Initial</div><input class="ci" id="f-logo" oninput="lu('logo-char',this.value);lu('footer-logo-char',this.value)"></div>
+      <div class="cg"><div class="cl">Logo Last Name</div><input class="ci" id="f-logon" oninput="lu('logo-name',this.value);lu('footer-logo-name',this.value)"></div>
+      <div class="cg"><div class="cl">Hire Button Text</div><input class="ci" id="f-hire" oninput="lu('hire-txt',this.value)"></div>
+      <div class="cg"><div class="cl">Footer Copyright Text</div><input class="ci" id="f-footer" oninput="lu('footer-copy',this.value)"></div>
+      <div class="cdiv"></div>
+      <div class="cst">Ticker Bar Clients</div>
+      <p style="font-size:.72rem;color:var(--txt3);margin-bottom:.8rem">Comma-separated list of client names shown in scrolling ticker.</p>
+      <textarea class="cta" id="f-ticker" style="min-height:90px" oninput="refreshTicker(this.value)"></textarea>
+      <div class="cdiv"></div>
+      <div class="cst">Export & Import Data</div>
+      <p style="font-size:.72rem;color:var(--txt3);margin-bottom:.8rem">Export all your edits as a JSON backup. Import to restore.</p>
+      <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+        <button class="cb- cb-s" onclick="exportData()">⬇ Export JSON Backup</button>
+        <label class="cb- cb-s" style="cursor:pointer">⬆ Import JSON <input type="file" accept=".json" style="display:none" onchange="importData(this)"></label>
+      </div>
+      <div class="cact"><button class="cb- cb-p" onclick="save('settings')">Save Settings</button><span class="csaved" id="sv-settings">✓ Saved</span></div>
+    </div>
 
-<!-- ═══════════════════════════════════════════
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
      PORTFOLIO HTML
-═══════════════════════════════════════════ -->
+════════════════════════════════════════ -->
 <nav>
-  <a href="#" class="logo" id="nav-logo-el"><span id="logo-letter">U</span><em>.</em>Daftari</a>
+  <a href="#" class="logo"><span id="logo-char">U</span><em>.</em><span id="logo-name">Daftari</span></a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -534,489 +431,586 @@ h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.8vw,3rem);fon
     <li><a href="#achievements">Achievements</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:daftariumesh@gmail.com" class="nav-hire" id="nav-hire-el"><span id="nav-hire-text">Hire Me →</span></a>
+  <a href="#contact" class="nhire"><span id="hire-txt">Hire Me →</span></a>
 </nav>
 
 <section id="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-grid">
+  <div class="hglow"></div>
+  <div class="hgrid">
     <div>
-      <div class="hero-tag"><span class="hero-tag-dot"></span><span id="hero-tag-text">Open to FAANG &amp; Top SaaS Sales Roles</span></div>
-      <h1 class="hero-name"><span id="hero-first">Umesh</span><br><em id="hero-last">Daftari</em></h1>
-      <p class="hero-subtitle"><span id="hero-subtitle-text">Enterprise SaaS Sales Leader</span></p>
-      <p class="hero-desc"><span id="hero-desc-text">5+ years closing Fortune 500 deals across India, UAE, USA &amp; UK. From Coca-Cola to McDonald's — I close with conviction, scale with systems, and grow with data. Currently at <strong>PopProbe</strong> &amp; <strong>HOPE Research Group</strong>.</span></p>
-      <div class="hero-btns">
-        <a href="#cases" class="btn-gold" id="hero-btn-primary"><span id="btn-primary-text">View Case Studies →</span></a>
-        <a href="mailto:daftariumesh@gmail.com" class="btn-outline" id="hero-btn-secondary">Get In Touch</a>
+      <div class="htag"><span class="htag-dot"></span><span id="htag-txt">Open to FAANG &amp; Top SaaS Sales Roles</span></div>
+      <h1 class="hn"><span id="hfn">Umesh</span><br><em id="hln">Daftari</em></h1>
+      <p class="hsub"><span id="hsub">Enterprise SaaS Sales Leader</span></p>
+      <p class="hdesc"><span id="hdesc-txt">5+ years closing <strong>Fortune 500 deals</strong> across India, UAE, USA &amp; UK. From Coca-Cola to McDonald's — I close with conviction, scale with systems, and grow with data. Currently at <strong>PopProbe</strong> &amp; <strong>HOPE Research Group</strong>.</span></p>
+      <div class="hbtns">
+        <a href="#cases" class="btn-g">View Case Studies →</a>
+        <a href="#contact" class="btn-o">Get In Touch</a>
       </div>
-      <div class="hero-stats">
-        <div><div class="sn" id="stat1-num">77<em>%</em></div><div class="sl-label" id="stat1-lbl">Sales Growth · 12mo</div></div>
-        <div><div class="sn" id="stat2-num">23<em>+</em></div><div class="sl-label" id="stat2-lbl">Enterprise Clients</div></div>
-        <div><div class="sn" id="stat3-num">₹1<em>Cr+</em></div><div class="sl-label" id="stat3-lbl">ARR Generated</div></div>
-        <div><div class="sn" id="stat4-num">6</div><div class="sl-label" id="stat4-lbl">Global Markets</div></div>
-      </div>
+      <div class="hstats" id="hstats"></div>
     </div>
-    <div class="hero-card">
-      <div class="hc-lbl">🏆 Recognition · 2024</div>
-      <div class="aw"><div class="aw-ico">🥇</div><div><div class="aw-t">Best Sales Record of the Year</div><div class="aw-y">HOPE Research Group · 2024</div></div></div>
-      <div class="aw"><div class="aw-ico">🏅</div><div><div class="aw-t">Top Business Dev Performer</div><div class="aw-y">HOPE Research Group · 2024</div></div></div>
-      <div class="aw"><div class="aw-ico">💡</div><div><div class="aw-t">Best Product Innovation Award</div><div class="aw-y">HOPE Research Group · 2024</div></div></div>
-      <div class="aw"><div class="aw-ico">🤝</div><div><div class="aw-t">Client Relations Excellence</div><div class="aw-y">HOPE Research Group · 2024</div></div></div>
-      <div class="aw"><div class="aw-ico">📜</div><div><div class="aw-t">HubSpot Sales Hub Certified</div><div class="aw-y">HubSpot · 2025</div></div></div>
+    <div class="hcard">
+      <div class="hclbl">🏆 Recognition</div>
+      <div id="hcard-awards"></div>
     </div>
   </div>
 </section>
 
-<div id="ticker">
-  <div class="ticker-track" id="ticker-track"></div>
-</div>
+<div id="ticker"><div class="ttrack" id="ttrack"></div></div>
 
-<section id="about">
-  <div class="about-g">
+<section id="about" class="sec">
+  <div class="ag">
     <div class="rv">
-      <div class="sl2"><span id="about-label">About Me</span></div>
-      <h2 id="about-title">I don't pitch products.<br>I solve problems.</h2>
-      <p class="ap" id="about-p1">I'm an Enterprise SaaS Sales professional based in Bengaluru with 5+ years closing complex B2B deals across India, UAE, USA and UK. I specialize in full-cycle sales — cold outreach, product demos, CXO negotiation, and multi-year contract closure.</p>
-      <p class="ap" id="about-p2">At HOPE Research Group, I grew from BDE to Sales Manager, generating ₹1+ Crore in ARR and closing Fortune 500 clients across 6 global markets including Coca-Cola, Nestlé, Rolex and Burger King.</p>
-      <p class="ap" id="about-p3">At PopProbe, I sell India's leading offline-first operations execution platform to multi-store F&amp;B and retail brands — managing the full pipeline from outbound to close across top QSR, retail and hospitality chains.</p>
+      <div class="sl">About Me</div>
+      <h2>I don't pitch products.<br>I solve problems.</h2>
+      <div id="about-paras"></div>
     </div>
     <div class="rv">
-      <div class="sl2">Skills &amp; Tools</div>
-      <div class="skills-g" id="skills-grid" style="margin-top:.8rem"></div>
+      <div class="sl">Skills &amp; Tools</div>
+      <div class="skg" id="skills-grid" style="margin-top:.8rem"></div>
     </div>
   </div>
 </section>
 
-<section id="experience">
+<section id="experience" class="sec">
   <div style="max-width:1400px;margin:0 auto">
-    <div class="sl2 rv">Experience</div>
+    <div class="sl rv">Experience</div>
     <h2 class="rv">5 years. 3 roles.<br>One direction — up.</h2>
-    <div class="tl" id="exp-timeline"></div>
+    <div class="tl" id="exp-tl"></div>
   </div>
 </section>
 
-<section id="cases">
+<section id="cases" class="sec">
   <div style="max-width:1400px;margin:0 auto">
-    <div class="sl2 rv">Case Studies</div>
+    <div class="sl rv">Case Studies</div>
     <h2 class="rv">23 clients. Real problems.<br>Measurable results.</h2>
-    <p class="cs-intro rv">Enterprise deals I led from first contact to signed contract — across market research intelligence and operations execution platforms.</p>
-    <div class="plat-pills rv">
-      <span class="pp hope"><span class="dot"></span>HOPE Research Group — AI-Powered Market Research &amp; Consumer Insights</span>
-      <span class="pp pop"><span class="dot"></span>PopProbe — Offline-First Operations Execution Platform</span>
+    <p class="cintro rv">Enterprise deals I led from first contact to signed contract — across market research intelligence and operations execution platforms.</p>
+    <div class="ppills rv">
+      <span class="pp hope"><span class="ppd"></span>HOPE Research Group — Market Research &amp; Consumer Insights</span>
+      <span class="pp pop"><span class="ppd"></span>PopProbe — Offline-First Operations Execution</span>
     </div>
     <div class="ftabs rv">
       <button class="ft on" onclick="fc('all',this)">All</button>
-      <button class="ft" onclick="fc('fnb',this)">F&amp;B Chains</button>
-      <button class="ft" onclick="fc('retail',this)">Retail &amp; Fashion</button>
-      <button class="ft" onclick="fc('fmcg',this)">FMCG &amp; Global</button>
+      <button class="ft" onclick="fc('fnb',this)">F&amp;B</button>
+      <button class="ft" onclick="fc('retail',this)">Retail</button>
+      <button class="ft" onclick="fc('fmcg',this)">FMCG</button>
       <button class="ft" onclick="fc('hospitality',this)">Hospitality</button>
       <button class="ft" onclick="fc('other',this)">Other</button>
     </div>
-    <div class="cg" id="cases-grid"></div>
+    <div class="cgrid" id="cases-grid"></div>
   </div>
 </section>
 
-<section id="achievements">
+<section id="achievements" class="sec">
   <div style="max-width:1400px;margin:0 auto">
-    <div class="sl2 rv">Achievements</div>
-    <h2 class="rv">Numbers that<br>speak for themselves.</h2>
-    <div class="ach-g" id="ach-grid"></div>
-    <div class="awards-g" id="awards-grid"></div>
+    <div class="sl rv">Achievements</div>
+    <h2 class="rv">Numbers that speak<br>for themselves.</h2>
+    <div class="achg" id="ach-grid"></div>
+    <div class="awg" id="awards-grid"></div>
   </div>
 </section>
 
 <section id="contact">
-  <div class="sl2" style="justify-content:center"><span>Let's Connect</span></div>
-  <h2 style="text-align:center" id="contact-title">Open to FAANG &amp;<br>top SaaS roles.</h2>
-  <p class="ct-sub" id="contact-sub">Available for Enterprise Sales, Account Executive, BDM and Sales Manager roles across India and global markets. Let's build something big.</p>
-  <div class="ct-links" id="contact-links"></div>
-  <div class="ct-d" id="contact-detail"></div>
+  <div class="sl">Let's Connect</div>
+  <h2 id="ct-title">Open to FAANG &amp;<br>top SaaS roles.</h2>
+  <p class="ctsub" id="ct-sub">Available for Enterprise Sales, Account Executive, BDM and Sales Manager roles across India and global markets.</p>
+  <div class="ctlinks" id="ct-links"></div>
+  <div class="ctd" id="ct-detail"></div>
 </section>
 
 <footer>
-  <div class="fl"><span id="footer-logo">U</span><em>.</em>Daftari</div>
+  <div class="fl"><span id="footer-logo-char">U</span><em>.</em><span id="footer-logo-name">Daftari</span></div>
   <div class="fn" id="footer-copy">© 2025 Umesh Daftari · Enterprise SaaS Sales · Bengaluru, India</div>
 </footer>
 
 <script>
-/* ═══════════════════════════════════════════
-   DATA STORE — Edit all content here
-═══════════════════════════════════════════ */
-const DATA = {
-  skills:[
-    {cat:'Sales & CRM',items:'Salesforce · HubSpot · Zoho CRM · ZoomInfo · LinkedIn Sales Navigator'},
-    {cat:'Sales Strategy',items:'Enterprise Sales · Pipeline Mgmt · GTM Strategy · Account Mgmt · Forecasting'},
-    {cat:'Data & Analytics',items:'Excel (Pivot, VLOOKUP) · Tableau · KPI Dashboards · CRM Reporting'},
-    {cat:'Marketing',items:'GA4 · SEO/SEM · PPC · Email Marketing · Figma · Adobe Photoshop'},
-    {cat:'Tools',items:'Jira · Trello · Slack · Agile · Microsoft Office Suite'},
-    {cat:'Platforms Sold',items:'HOPE Research SaaS · PopProbe Ops Platform · CRM & Market Intelligence Tools'},
-  ],
-  experience:[
-    {period:'Aug 2023 – Present',company:'HOPE Research Group + PopProbe',role:'Sales Manager',location:'📍 Bengaluru · India · UAE · USA · UK · Egypt · Caribbean',bullets:['Closed multi-year enterprise SaaS contracts with Fortune 500 brands — Coca-Cola, Nestlé, Rolex, Aditya Birla, Burger King, Jubilant FoodWorks (Domino\'s)','Managed full sales cycle for SaaS market-research solutions across 6 international markets','Boosted qualified lead conversion by 78% YoY and upsell revenue by 35% via Salesforce pipeline optimization','Organized CXO roundtables and industry webinars — driving brand visibility and enterprise retention','Built PopProbe pipeline across India\'s top F&B and retail chains']},
-    {period:'Aug 2021 – Aug 2023',company:'HOPE Research Group',role:'Business Development Executive',location:'📍 Bengaluru, India',bullets:['Generated ₹1+ Crore in annual revenue through end-to-end sales and pipeline forecasting','Negotiated multi-year enterprise contracts — boosted ARR by 40%','Expanded upsell and cross-sell by 25%, increasing avg deal size by 20%, reducing churn by 15%','Optimized CRM workflows — reduced support complaints 50%, improved efficiency 15%']},
-    {period:'Jul 2020 – Aug 2021',company:'HOPE Research Group',role:'Digital Marketing Specialist',location:'📍 Bengaluru, India',bullets:['Managed Amazon, eBay & Shopify storefronts — drove online sales in the US market','Google Ads, SEO and email campaigns — increased website traffic by 50%']},
-    {period:'Jun 2019 – Jul 2020',company:'Aura Research & Tech Inc.',role:'Digital Marketing Executive',location:'📍 Delhi, India',bullets:['Led market expansion — increased market share by 40%','Data-driven email campaigns — 50% growth in lead conversions','Redesigned product UI/UX — improved adoption rates by 30%']},
-  ],
+/* ════════════════════════════════════════
+   DEFAULT DATA
+════════════════════════════════════════ */
+const DEF = {
+  hero:{tag:'Open to FAANG & Top SaaS Sales Roles',fn:'Umesh',ln:'Daftari',title:'Enterprise SaaS Sales Leader',desc:'5+ years closing <strong>Fortune 500 deals</strong> across India, UAE, USA & UK. From Coca-Cola to McDonald\'s — I close with conviction, scale with systems, and grow with data. Currently at <strong>PopProbe</strong> & <strong>HOPE Research Group</strong>.',stats:[{num:'77',sfx:'%',lbl:'Sales Growth · 12mo'},{num:'23',sfx:'+',lbl:'Enterprise Clients'},{num:'₹1',sfx:'Cr+',lbl:'ARR Generated'},{num:'6',sfx:'',lbl:'Global Markets'}],awards:[{ico:'🥇',t:'Best Sales Record of the Year',y:'HOPE Research Group · 2024'},{ico:'🏅',t:'Top Business Dev Performer',y:'HOPE Research Group · 2024'},{ico:'💡',t:'Best Product Innovation Award',y:'HOPE Research Group · 2024'},{ico:'🤝',t:'Client Relations Excellence',y:'HOPE Research Group · 2024'},{ico:'📜',t:'HubSpot Sales Hub Certified',y:'HubSpot · 2025'}]},
+  about:{paras:['I\'m an <strong>Enterprise SaaS Sales professional</strong> based in Bengaluru with 5+ years closing complex B2B deals across India, UAE, USA and UK. I specialize in full-cycle sales — cold outreach, product demos, CXO negotiation, and multi-year contract closure.','At HOPE Research Group, I grew from BDE to Sales Manager, generating <strong>₹1+ Crore in ARR</strong> and closing Fortune 500 clients across 6 global markets including Coca-Cola, Nestlé, Rolex and Burger King.','At <strong>PopProbe</strong>, I sell India\'s leading offline-first operations execution platform to multi-store F&B and retail brands — managing the full pipeline from outbound to close.'],skills:[{cat:'Sales & CRM',items:'Salesforce · HubSpot · Zoho CRM · ZoomInfo · LinkedIn Sales Navigator'},{cat:'Sales Strategy',items:'Enterprise Sales · Pipeline Mgmt · GTM Strategy · Account Mgmt · Forecasting'},{cat:'Data & Analytics',items:'Excel (Pivot, VLOOKUP) · Tableau · KPI Dashboards · CRM Reporting'},{cat:'Marketing',items:'GA4 · SEO/SEM · PPC · Email Marketing · Figma · Adobe Photoshop'},{cat:'Tools',items:'Jira · Trello · Slack · Agile · Microsoft Office Suite'},{cat:'Platforms Sold',items:'HOPE Research SaaS · PopProbe Ops Platform · CRM & Market Intelligence Tools'}]},
+  exp:[{period:'Aug 2023 – Present',co:'HOPE Research Group + PopProbe',role:'Sales Manager',loc:'📍 Bengaluru · India · UAE · USA · UK · Egypt · Caribbean',bullets:['Closed multi-year enterprise SaaS contracts with Fortune 500 brands — Coca-Cola, Nestlé, Rolex, Aditya Birla, Burger King, Jubilant FoodWorks (Domino\'s)','Managed full sales cycle across 6 international markets','Boosted lead conversion by 78% YoY and upsell revenue by 35% via Salesforce optimization','Organized CXO roundtables and industry webinars','Built PopProbe pipeline across India\'s top F&B and retail chains']},{period:'Aug 2021 – Aug 2023',co:'HOPE Research Group',role:'Business Development Executive',loc:'📍 Bengaluru, India',bullets:['Generated ₹1+ Crore in annual revenue through end-to-end sales','Negotiated multi-year enterprise contracts — boosted ARR by 40%','Expanded upsell/cross-sell by 25%, avg deal size by 20%, reduced churn by 15%','Optimized CRM workflows — reduced complaints 50%, improved efficiency 15%']},{period:'Jul 2020 – Aug 2021',co:'HOPE Research Group',role:'Digital Marketing Specialist',loc:'📍 Bengaluru, India',bullets:['Managed Amazon, eBay & Shopify storefronts for the US market','Google Ads, SEO and email campaigns — increased website traffic by 50%']},{period:'Jun 2019 – Jul 2020',co:'Aura Research & Tech Inc.',role:'Digital Marketing Executive',loc:'📍 Delhi, India',bullets:['Led market expansion — increased market share by 40%','Data-driven email campaigns — 50% growth in lead conversions','Redesigned product UI/UX — improved adoption rates by 30%']}],
   cases:[
-    {id:1,name:'Coca-Cola',sector:'FMCG · Beverages',platform:'hope',category:'fmcg',scale:'285 Countries · Trinidad & Tobago, USA, Caribbean Markets',logoBg:'#ED1C16',logoText:'Coke',problem:'Coca-Cola needed real-time consumer sentiment data and retail compliance visibility across Caribbean and Latin American markets — regions where most research firms had no local presence. Brand equity metrics were outdated, and retail execution was untracked across 285-country distribution.',solution:'Positioned HOPE Research Group — the only firm with 40+ years of on-ground Caribbean/LATAM presence — as their AI-powered consumer intelligence partner. Closed a multi-year contract covering real-time sentiment tracking, retail compliance audits, and ongoing market research across the Caribbean.',metrics:['285 Countries','Multi-year Contract','AI Analytics','Caribbean + LATAM']},
-    {id:2,name:'Nestlé USA',sector:'FMCG · Food & Nutrition',platform:'hope',category:'fmcg',scale:'US & Caribbean Markets · Global Fortune 500',logoBg:'#005EA8',logoText:'Nestlé',problem:'Nestlé\'s US and Caribbean divisions lacked granular consumer behaviour data for new product development and pricing strategy. Traditional research was slow and unable to capture real-time purchase drivers across diverse consumer segments.',solution:'Sold HOPE\'s segmentation & targeting and NPD research services backed by 10M+ annual data points. Presented AI-driven predictive targeting models directly to Nestlé\'s C-suite. Won a strategic multi-year research partnership.',metrics:['C-Suite Deal','NPD Research','Pricing Strategy','10M+ Data Points']},
-    {id:3,name:'Burger King',sector:'QSR · Fast Food',platform:'hope',category:'fnb',scale:'India & Caribbean · Hundreds of Outlets',logoBg:'#FF8C00',logoText:'BK',problem:'Burger King\'s franchise operations had no standardized way to measure customer experience consistency across outlets. Mystery shopping was manual, reports took weeks, and corrective actions were delayed — impacting franchise performance scores and global brand compliance.',solution:'Introduced HOPE\'s automated Mystery Shopping & Audits platform with AI compliance scoring. Ran a 10-outlet pilot showing 30% improvement in CX scores within 60 days. Closed a regional franchise research contract.',metrics:['Mystery Shopping','AI Scoring','30% CX Improvement','Franchise Compliance']},
-    {id:4,name:"Jubilant FoodWorks · Domino's India",sector:'QSR · Pizza Chain',platform:'hope',category:'fnb',scale:"1,900+ Stores Across India",logoBg:'#006491',logoText:"Domino's",problem:"Jubilant FoodWorks — India's largest QSR operator running Domino's and Dunkin — had no real-time visibility into brand perception and customer satisfaction across 1,900+ stores. Feedback loops were slow and regional disparities were invisible at the corporate level.",solution:'Positioned HOPE\'s syndicated consumer understanding platform with real-time sentiment tracking and store-level NPS benchmarking. The system surfaced underperforming regions within days. Secured a long-term nationwide market research mandate.',metrics:["1,900+ Stores",'NPS Benchmarking','Real-time Sentiment','National Mandate']},
-    {id:5,name:"McDonald's India",sector:'QSR · Fast Food Chain',platform:'pop',category:'fnb',scale:'455 Stores Across India · Tier 1, 2 & 3 Cities',logoBg:'#FFC72C',logoText:'M',problem:"With 455 outlets — many in Tier 2/3 cities with unreliable internet — McDonald's franchise managers couldn't reliably complete daily checklists. Compliance data was fragmented, area managers spent hours on manual follow-ups, and there was no real-time visibility into store standards.",solution:"Positioned PopProbe's offline-first platform as the only tool that works without internet and auto-syncs when connected. Ran a live demo on a hotspot-disabled device. Won the account on the spot.",metrics:['455 Stores','Offline-First','Zero Manual Follow-ups','Real-time Dashboards']},
-    {id:6,name:'Simpli Namdharis',sector:'Organic Retail · Grocery',platform:'pop',category:'retail',scale:'50 Premium Organic Stores · South India',logoBg:'#2E7D32',logoText:'SN',problem:"Namdharis' 50 premium organic stores had no standardized SOPs for store opening, hygiene audits, and inventory compliance. Managers used WhatsApp and paper checklists — leading to inconsistent customer experiences and zero traceability.",solution:'Deployed PopProbe as their operations backbone — digital SOP checklists, issue tracking with photo evidence, and a central compliance dashboard. Ran a 5-store pilot with 100% checklist completion in Week 1. Expanded to all 50 stores.',metrics:['50 Stores','100% Compliance','SOP Digitization','Photo Verification']},
-    {id:7,name:'Cure Foods India',sector:'Cloud Kitchen · D2C Food',platform:'pop',category:'fnb',scale:'500+ Outlets · EatFit, CakeZone & 10+ Brands · 15 Cities',logoBg:'#1A237E',logoText:'CURE',problem:'Cure Foods operates 500+ cloud kitchens across 15 cities running 10+ brands. Maintaining food safety compliance, FSSAI audit readiness and brand SOP adherence at this scale was operationally impossible with existing tools.',solution:"Sold PopProbe's multi-brand execution platform with brand-specific checklists, temperature log tracking, FSSAI audit templates and a centralized ops dashboard. The offline-first capability was the critical differentiator.",metrics:['500+ Outlets','Multi-brand','FSSAI Compliance','$167M Funded Co.']},
-    {id:8,name:'Ghost Kitchens India',sector:'Cloud Kitchen · Virtual Brands',platform:'pop',category:'fnb',scale:'85 Cloud Kitchens · 1,200+ Virtual Restaurant Brands',logoBg:'#212121',logoText:'GK',problem:'Ghost Kitchens India manages 85 fulfillment kitchens running 1,200+ virtual brands. Ensuring every kitchen followed correct recipes, safety protocols and brand standards across this network was unmanageable — deviations were hurting brand equity.',solution:"Introduced PopProbe's partner-facing checklist and audit module — enabling Ghost Kitchens to push brand-specific SOPs to each kitchen, track completion with image-based verification, and generate instant compliance reports.",metrics:['85 Kitchens','1,200+ Brands','Brand SOP Compliance','Image Verification']},
-    {id:9,name:'Mustard Fashions',sector:'Fashion Retail · Apparel',platform:'pop',category:'retail',scale:'50 Retail Stores · Pan India',logoBg:'#F5C518',logoText:'MF',problem:"Mustard Fashions' 50 stores had no uniform retail execution framework. VM compliance varied wildly, planogram adherence wasn't tracked, and district managers were making expensive store visits without structured audit frameworks.",solution:"Deployed PopProbe's visual merchandising audit module with photo-based planogram verification. Added daily opening checklists and issue escalation workflows. Eliminated redundant physical visits by 60%.",metrics:['50 Stores','VM Compliance','Remote Audits','60% Less Site Visits']},
-    {id:10,name:'Aditya Birla · Opus Paints',sector:'Paints & Décor Retail',platform:'hope',category:'retail',scale:'300 Exclusive Stores · Pan India · Rapid Expansion Phase',logoBg:'#E60026',logoText:'OPUS',problem:"Opus Paints was scaling from 100 to 300 exclusive stores. The leadership team needed consumer perception data, competitive benchmarking and channel partner feedback to guide GTM strategy in new markets.",solution:"Engaged Aditya Birla's VP of Sales and CMO directly with HOPE Research's brand equity analysis and channel intelligence platform. Won an 18-month strategic research mandate covering all 300 stores.",metrics:['300 Stores','Brand Equity Study','Channel Intelligence','C-Suite Engagement']},
-    {id:11,name:'Rolex India',sector:'Luxury Watches · Premium Retail',platform:'hope',category:'retail',scale:'All Authorized Dealer Stores · India',logoBg:'#006039',logoText:'ROLEX',problem:"Rolex India needed deep luxury consumer profiling — understanding the purchase journey and brand perception among India's ultra-HNI segment. Generic research wasn't sophisticated enough.",solution:"Positioned HOPE Research's premium consumer understanding and brand sensory research for the luxury segment. Engaged regional heads and secured a national mandate covering Rolex's full India authorized dealer network.",metrics:['Luxury Segment','HNI Consumer Profiling','National Mandate','Mystery Shopping']},
-    {id:12,name:'Marelli & Motherson',sector:'Automotive Manufacturing',platform:'pop',category:'other',scale:'5 Manufacturing Plants · India · Tier-1 OEM Supplier',logoBg:'#1565C0',logoText:'M&M',problem:"Marelli and Motherson's 5 plants ran safety and quality audits on paper — a critical liability where non-compliance with ISO standards can halt production lines. Every digital tool they'd tried required stable internet unavailable on the plant floor.",solution:"PopProbe's offline-first platform was the exact fit. Demonstrated frontline workers completing EHS safety checklists and ISO quality audits on mobile without internet. Closed all 5 plants in a single enterprise deal.",metrics:['5 Plants','EHS Compliance','ISO Audits','Zero-Internet Required']},
-    {id:13,name:'Residency Hotels',sector:'5-Star Hospitality',platform:'pop',category:'hospitality',scale:'All 5-Star Properties · South India',logoBg:'#8D6E63',logoText:'RH',problem:"Residency Hotels' 5-star properties faced a persistent challenge — maintaining consistently high service standards across housekeeping, F&B, front office and engineering. Manual checklists were incomplete, audit trails non-existent, and response times too slow.",solution:'Implemented PopProbe across all departments — room readiness checklists with photo verification, daily F&B prep audits, engineering maintenance logs, and guest escalation workflows. Full real-time compliance dashboard.',metrics:['5-Star Properties','Multi-dept Audits','Real-time Dashboard','Guest Escalation']},
-    {id:14,name:'Pro Hotels',sector:'Hospitality · Mixed-Use',platform:'pop',category:'hospitality',scale:'Hotels · Service Apartments · Wedding Halls · Restaurants',logoBg:'#37474F',logoText:'PRO',problem:'Pro Hotels operates a complex mixed-use portfolio — service apartments, banquet halls, restaurants and hotels. Each vertical had unique requirements and coordinating compliance across them was creating blind spots.',solution:'Designed a custom PopProbe deployment with separate checklist modules per vertical. One platform, one dashboard, four business lines — the operations head monitors all verticals in real time.',metrics:['4 Business Verticals','Custom Modules','Single Dashboard','Full Portfolio Coverage']},
-    {id:15,name:'The Belgian Waffle Co.',sector:'QSR · Dessert Chain',platform:'pop',category:'fnb',scale:'500+ Franchise Stores · LMS Implementation',logoBg:'#F7C948',logoText:'BWC',problem:"With 500+ franchise outlets, Belgian Waffle's biggest challenge was franchisee training and recipe compliance at scale. New partners were onboarded with physical manuals — leading to inconsistent quality and high retraining costs.",solution:"Introduced PopProbe's LMS module alongside operational checklists — digitizing franchisee training with step-by-step guided tasks, recipe SOPs and training completion tracking per outlet.",metrics:['500+ Franchise Stores','LMS Training','Recipe Compliance','Digital Onboarding']},
-    {id:16,name:'Orchids International School',sector:'K-12 Education · Premium',platform:'pop',category:'other',scale:'Multiple Campuses · Pan India',logoBg:'#6A1B9A',logoText:'OIS',problem:"Orchids International's multi-campus operations lacked standardized facility audits, safety compliance tracking, and hygiene inspection protocols. Oversight was entirely manual and reactive.",solution:'Deployed PopProbe for campus operations — daily facility safety checklists, classroom hygiene audits, canteen compliance, bus safety logs and fire drill documentation. Live compliance score per campus.',metrics:['Multi-campus','Safety Compliance','Live Audit Scores','Instant Escalation']},
-    {id:17,name:'7th Heaven Bakery',sector:'Premium Bakery · International',platform:'pop',category:'fnb',scale:'India · UK · USA · Europe',logoBg:'#4A148C',logoText:'7H',problem:'7th Heaven operates across 4 geographies — each with different food safety regulations (FSSAI, UK FSA, FDA, EU). Maintaining consistent quality and multi-jurisdictional compliance across international locations was a critical operational and legal risk.',solution:'Positioned PopProbe as a multi-geography compliance platform with region-specific food safety audit templates and a global management dashboard. Founders can monitor all locations from a single interface across time zones.',metrics:['4 Geographies','Multi-regulation','Global Dashboard','Inspection-Ready']},
-    {id:18,name:'Kamal Watches · Swiss Time House · Just In Time',sector:'Luxury Watch Retail',platform:'pop',category:'retail',scale:'Premium Watch Boutiques · Multi-brand · India',logoBg:'#B8860B',logoText:'⌚',problem:'Three premium watch retailers selling Rolex, Omega, TAG Heuer had zero standardization in boutique operations. International brand principals were demanding compliance documentation — any deviation risked brand agreements worth crores.',solution:"Onboarded all three retail groups onto PopProbe — boutique opening checklists, VM audits with photo evidence, daily security logs and inventory verification. Reports exportable directly for brand principal compliance reviews. Closed all three as a combined deal.",metrics:['3 Retail Groups','Luxury VM Audits','Brand Principal Reports','Security Compliance']},
-    {id:19,name:'Zed the Bakers · Chaileela Cafe',sector:'Artisan Bakery · Café',platform:'pop',category:'fnb',scale:'7-Star Artisan Bakery + Premium Café · India',logoBg:'#3E2723',logoText:'ZB',problem:'Zed the Bakers, a 7-star artisan bakery, needed to maintain exacting quality standards for every batch. Chaileela Cafe needed rapid scaling capability while maintaining brand consistency across new outlets.',solution:"Deployed PopProbe's kitchen operations module for Zed — batch production logs with photo sign-offs and temperature compliance. For Chaileela, built a digital SOP framework that scales automatically as they open new locations.",metrics:['7-Star Standards','Batch Production Logs','Scalable SOPs','Rapid Expansion Ready']},
-    {id:20,name:'Burgerman India',sector:'QSR · Fast Casual',platform:'pop',category:'fnb',scale:'Growing Multi-outlet Burger Chain · India',logoBg:'#BF360C',logoText:'BM',problem:'Burgerman was in rapid expansion mode — opening new outlets monthly. New staff joined every week, SOP documentation was getting lost, and franchisee quality was drifting without visibility tools for the core team.',solution:"Positioned PopProbe as their expansion operating system — digital SOPs, daily checklists, quality audits, and a new outlet launch template that makes every location a standardized rollout with zero additional overhead.",metrics:['Rapid Expansion','Digital SOPs','Franchise Quality','Zero Extra Overhead']},
+    {id:1,name:"Coca-Cola",sec:"FMCG · Beverages",plat:"hope",cat:"fmcg",scale:"285 Countries · USA, Caribbean & LATAM",logoBg:"#ED1C16",logoTxt:"Coke",logoImg:"",problem:"Coca-Cola needed real-time consumer sentiment data and retail compliance visibility across Caribbean and Latin American markets — regions where most research firms had no local presence. Brand equity metrics were outdated and retail execution was untracked.",solution:"Positioned HOPE Research Group — the only firm with 40+ years of Caribbean/LATAM presence — as their AI-powered consumer intelligence partner. Closed a multi-year contract covering sentiment tracking, retail compliance audits, and ongoing market research.",metrics:["285 Countries","Multi-year Contract","AI Analytics","Caribbean + LATAM"],testimonial:"",testiBy:""},
+    {id:2,name:"Nestlé USA",sec:"FMCG · Food & Nutrition",plat:"hope",cat:"fmcg",scale:"US & Caribbean Markets",logoBg:"#005EA8",logoTxt:"Nestlé",logoImg:"",problem:"Nestlé's US divisions lacked granular consumer behaviour data for NPD and pricing strategy. Traditional research was slow and unable to capture real-time purchase drivers across diverse segments.",solution:"Sold HOPE's segmentation & targeting and NPD research services backed by 10M+ annual data points. Presented AI-driven targeting models directly to the C-suite. Won a strategic multi-year research partnership.",metrics:["C-Suite Deal","NPD Research","Pricing Strategy","10M+ Data Points"],testimonial:"",testiBy:""},
+    {id:3,name:"Burger King",sec:"QSR · Fast Food",plat:"hope",cat:"fnb",scale:"India & Caribbean · Hundreds of Outlets",logoBg:"#FF8C00",logoTxt:"BK",logoImg:"",problem:"Burger King's franchise operations had no standardized CX measurement across outlets. Mystery shopping was manual, reports took weeks, and corrective actions were delayed.",solution:"Introduced HOPE's automated Mystery Shopping & Audits platform with AI compliance scoring. Ran a 10-outlet pilot showing 30% CX improvement in 60 days. Closed a regional franchise research contract.",metrics:["Mystery Shopping","AI Scoring","30% CX Improvement"],testimonial:"",testiBy:""},
+    {id:4,name:"Jubilant FoodWorks · Domino's",sec:"QSR · Pizza Chain",plat:"hope",cat:"fnb",scale:"1,900+ Stores Across India",logoBg:"#006491",logoTxt:"Domino's",logoImg:"",problem:"Jubilant FoodWorks had no real-time visibility into brand perception and customer satisfaction across 1,900+ stores. Feedback loops were slow and regional disparities invisible at corporate level.",solution:"Positioned HOPE's syndicated consumer platform with real-time NPS benchmarking. System surfaced underperforming regions within days. Secured long-term nationwide research mandate.",metrics:["1,900+ Stores","NPS Benchmarking","National Mandate"],testimonial:"",testiBy:""},
+    {id:5,name:"McDonald's India",sec:"QSR · Fast Food Chain",plat:"pop",cat:"fnb",scale:"455 Stores · Tier 1, 2 & 3 Cities",logoBg:"#FFC72C",logoTxt:"M",logoImg:"",problem:"With 455 outlets in Tier 2/3 cities with unreliable internet, McDonald's franchise managers couldn't reliably complete daily checklists. Compliance was fragmented and area managers spent hours on manual follow-ups.",solution:"Positioned PopProbe's offline-first platform as the only tool that works without internet and auto-syncs when connected. Ran a live demo on a hotspot-disabled device. Won the account on the spot.",metrics:["455 Stores","Offline-First","Zero Manual Follow-ups"],testimonial:"",testiBy:""},
+    {id:6,name:"Simpli Namdharis",sec:"Organic Retail · Grocery",plat:"pop",cat:"retail",scale:"50 Premium Organic Stores · South India",logoBg:"#2E7D32",logoTxt:"SN",logoImg:"",problem:"50 premium organic stores had no standardized SOPs for store opening, hygiene audits, and inventory compliance. Managers used WhatsApp and paper checklists — zero traceability.",solution:"Deployed PopProbe as their operations backbone — digital SOP checklists, issue tracking with photo evidence, and a central compliance dashboard. 100% checklist completion in Week 1 pilot. Expanded to all 50 stores.",metrics:["50 Stores","100% Compliance","SOP Digitization"],testimonial:"",testiBy:""},
+    {id:7,name:"Cure Foods India",sec:"Cloud Kitchen · D2C Food",plat:"pop",cat:"fnb",scale:"500+ Outlets · EatFit, CakeZone · 15 Cities",logoBg:"#1A237E",logoTxt:"CURE",logoImg:"",problem:"500+ cloud kitchens across 15 cities running 10+ brands. Maintaining FSSAI compliance and brand SOP adherence at this scale was operationally impossible with existing tools.",solution:"Sold PopProbe's multi-brand execution platform with brand-specific checklists, temperature logs, FSSAI audit templates and centralized ops dashboard. Offline-first was the critical differentiator.",metrics:["500+ Outlets","Multi-brand","FSSAI Compliance"],testimonial:"",testiBy:""},
+    {id:8,name:"Ghost Kitchens India",sec:"Cloud Kitchen · Virtual Brands",plat:"pop",cat:"fnb",scale:"85 Kitchens · 1,200+ Virtual Brands",logoBg:"#212121",logoTxt:"GK",logoImg:"",problem:"85 fulfillment kitchens running 1,200+ virtual brands. Ensuring every kitchen followed correct recipes and safety protocols was unmanageable — deviations were hurting brand equity.",solution:"Introduced PopProbe's partner-facing checklist module — brand-specific SOPs pushed to each kitchen with image-based verification and instant compliance reports for brand principals.",metrics:["85 Kitchens","1,200+ Brands","Image Verification"],testimonial:"",testiBy:""},
+    {id:9,name:"Mustard Fashions",sec:"Fashion Retail · Apparel",plat:"pop",cat:"retail",scale:"50 Retail Stores · Pan India",logoBg:"#F5C518",logoTxt:"MF",logoImg:"",problem:"50 stores had no uniform retail execution framework. VM compliance varied wildly, planogram adherence untracked, expensive site visits without structured audit frameworks.",solution:"Deployed PopProbe's VM audit module with photo-based planogram verification, daily opening checklists and issue escalation workflows. Eliminated 60% of redundant physical visits.",metrics:["50 Stores","VM Compliance","60% Less Site Visits"],testimonial:"",testiBy:""},
+    {id:10,name:"Aditya Birla · Opus Paints",sec:"Paints & Décor Retail",plat:"hope",cat:"retail",scale:"300 Exclusive Stores · Rapid Expansion",logoBg:"#E60026",logoTxt:"OPUS",logoImg:"",problem:"Opus Paints scaling from 100 to 300 stores needed consumer perception data, competitive benchmarking and channel partner feedback to guide GTM in new markets.",solution:"Engaged VP of Sales and CMO with HOPE Research's brand equity and channel intelligence platform. Won an 18-month strategic research mandate covering all 300 stores.",metrics:["300 Stores","Brand Equity Study","C-Suite Engagement"],testimonial:"",testiBy:""},
+    {id:11,name:"Rolex India",sec:"Luxury Watches · Premium Retail",plat:"hope",cat:"retail",scale:"All Authorized Dealer Stores · India",logoBg:"#006039",logoTxt:"ROLEX",logoImg:"",problem:"Rolex India needed deep luxury consumer profiling — purchase journey and brand perception among India's ultra-HNI segment. Generic research wasn't sophisticated enough.",solution:"Positioned HOPE's premium consumer understanding and brand sensory research for the luxury segment. Secured a national mandate covering Rolex's full India authorized dealer network.",metrics:["Luxury Segment","HNI Profiling","National Mandate"],testimonial:"",testiBy:""},
+    {id:12,name:"Marelli & Motherson",sec:"Automotive Manufacturing",plat:"pop",cat:"other",scale:"5 Manufacturing Plants · India",logoBg:"#1565C0",logoTxt:"M&M",logoImg:"",problem:"5 plants ran safety and quality audits on paper. Non-compliance with ISO standards could halt production lines. Digital tools tried before required internet unavailable on plant floors.",solution:"PopProbe's offline-first platform was the exact fit. Demonstrated EHS safety checklists and ISO quality audits on mobile without internet. Closed all 5 plants in a single deal.",metrics:["5 Plants","EHS Compliance","ISO Audits"],testimonial:"",testiBy:""},
+    {id:13,name:"Residency Hotels",sec:"5-Star Hospitality",plat:"pop",cat:"hospitality",scale:"All 5-Star Properties · South India",logoBg:"#8D6E63",logoTxt:"RH",logoImg:"",problem:"5-star properties struggled to maintain high service standards across housekeeping, F&B, front office and engineering. Manual checklists were incomplete, audit trails non-existent.",solution:"Implemented PopProbe across all departments — room readiness with photo verification, F&B prep audits, engineering logs, and guest escalation workflows. Full real-time compliance dashboard.",metrics:["5-Star Properties","Multi-dept Audits","Real-time Dashboard"],testimonial:"",testiBy:""},
+    {id:14,name:"Pro Hotels",sec:"Hospitality · Mixed-Use",plat:"pop",cat:"hospitality",scale:"Hotels · Service Apartments · Wedding Halls · Restaurants",logoBg:"#37474F",logoTxt:"PRO",logoImg:"",problem:"Complex mixed-use portfolio — service apartments, banquet halls, restaurants and hotels. Each vertical had unique requirements and coordinating compliance was creating blind spots.",solution:"Designed a custom PopProbe deployment with separate checklist modules per vertical. One platform, one dashboard, four business lines monitored in real time.",metrics:["4 Verticals","Custom Modules","Single Dashboard"],testimonial:"",testiBy:""},
+    {id:15,name:"The Belgian Waffle Co.",sec:"QSR · Dessert Chain",plat:"pop",cat:"fnb",scale:"500+ Franchise Stores · LMS",logoBg:"#F7C948",logoTxt:"BWC",logoImg:"",problem:"500+ franchise outlets — franchisee training and recipe compliance at scale. Physical manuals led to inconsistent quality and high retraining costs.",solution:"Introduced PopProbe's LMS module alongside operational checklists — digitizing franchisee training, recipe SOPs and tracking training completion per outlet.",metrics:["500+ Stores","LMS Training","Recipe Compliance"],testimonial:"",testiBy:""},
+    {id:16,name:"Orchids International School",sec:"K-12 Education · Premium",plat:"pop",cat:"other",scale:"Multiple Campuses · Pan India",logoBg:"#6A1B9A",logoTxt:"OIS",logoImg:"",problem:"Multi-campus operations lacked standardized facility audits, safety compliance and hygiene inspection protocols. Oversight was entirely manual and reactive.",solution:"Deployed PopProbe for campus operations — daily safety checklists, classroom hygiene audits, canteen compliance, bus safety logs and fire drill documentation. Live compliance scores per campus.",metrics:["Multi-campus","Safety Compliance","Live Scores"],testimonial:"",testiBy:""},
+    {id:17,name:"7th Heaven Bakery",sec:"Premium Bakery · International",plat:"pop",cat:"fnb",scale:"India · UK · USA · Europe",logoBg:"#4A148C",logoTxt:"7H",logoImg:"",problem:"Operates across 4 geographies each with different food safety regulations (FSSAI, UK FSA, FDA, EU). Maintaining compliance across international locations was a critical operational risk.",solution:"Positioned PopProbe as a multi-geography compliance platform with region-specific food safety audit templates and a global management dashboard. Founders monitor all locations from a single interface.",metrics:["4 Geographies","Multi-regulation","Global Dashboard"],testimonial:"",testiBy:""},
+    {id:18,name:"Kamal Watches · Swiss Time · Just In Time",sec:"Luxury Watch Retail",plat:"pop",cat:"retail",scale:"Premium Watch Boutiques · India",logoBg:"#B8860B",logoTxt:"⌚",logoImg:"",problem:"Three premium watch retailers had zero standardization. International brand principals were demanding compliance documentation — any deviation risked brand agreements worth crores.",solution:"Onboarded all three groups onto PopProbe — boutique opening checklists, VM audits with photo evidence, security logs, inventory verification. Reports exportable for brand principal reviews. Closed all three as a combined deal.",metrics:["3 Retail Groups","VM Audits","Brand Reports"],testimonial:"",testiBy:""},
+    {id:19,name:"Zed the Bakers · Chaileela Cafe",sec:"Artisan Bakery · Café",plat:"pop",cat:"fnb",scale:"7-Star Artisan Bakery + Premium Café",logoBg:"#3E2723",logoTxt:"ZB",logoImg:"",problem:"Zed the Bakers needed to maintain exacting quality for every batch. Chaileela needed rapid scaling capability while maintaining brand consistency.",solution:"Deployed kitchen operations module for Zed — batch production logs, photo sign-offs, temperature compliance. For Chaileela, built a digital SOP framework that scales automatically with every new outlet.",metrics:["7-Star Standards","Batch Logs","Scalable SOPs"],testimonial:"",testiBy:""},
+    {id:20,name:"Burgerman India",sec:"QSR · Fast Casual",plat:"pop",cat:"fnb",scale:"Growing Multi-outlet Chain · India",logoBg:"#BF360C",logoTxt:"BM",logoImg:"",problem:"Rapid expansion mode — opening new outlets monthly. New staff joined weekly, SOP documentation was getting lost, and franchisee quality was drifting.",solution:"Positioned PopProbe as their expansion OS — digital SOPs, daily checklists, quality audits, and a new outlet launch template that makes every location a standardized rollout with zero additional overhead.",metrics:["Rapid Expansion","Digital SOPs","Franchise Quality"],testimonial:"",testiBy:""}
   ],
-  achievements:[
-    {num:'77',suffix:'%',label:'Sales growth in 12 months'},
-    {num:'78',suffix:'%',label:'Lead conversion growth YoY'},
-    {num:'₹1',suffix:'Cr+',label:'Annual revenue generated'},
-    {num:'23',suffix:'+',label:'Enterprise clients closed'},
-  ],
-  awards:[
-    {icon:'🏆',title:'Best Sales Record of the Year',year:'HOPE Research Group · 2024'},
-    {icon:'🥇',title:'Top Business Development Performer',year:'HOPE Research Group · 2024'},
-    {icon:'💡',title:'Best Product Innovation Award',year:'HOPE Research Group · 2024'},
-    {icon:'🤝',title:'Client Relations Excellence Award',year:'HOPE Research Group · 2024'},
-    {icon:'📜',title:'HubSpot Sales Hub Certified',year:'HubSpot · 2025'},
-    {icon:'🖥️',title:'Microsoft Technology Associate (MTA)',year:'Microsoft'},
-  ],
-  contact:{
-    email:'daftariumesh@gmail.com',
-    phone:'+91-9443793635',
-    linkedin:'https://linkedin.com/in/umeshdaftari',
-    location:'Bengaluru, India',
-  },
-  ticker:['Coca-Cola','McDonald\'s India','Nestlé USA','Burger King','Jubilant FoodWorks · Domino\'s','Aditya Birla · Opus Paints','Rolex India','Cure Foods India','Ghost Kitchens India','Simpli Namdharis','Mustard Fashions','Marelli & Motherson','Belgian Waffle Co.','Residency Hotels','7th Heaven Bakery','Orchids International School','Pro Hotels','Burgerman India','Kamal Watches','Zed the Bakers','Chaileela Cafe'],
+  ach:[{num:'77',sfx:'%',lbl:'Sales growth in 12 months'},{num:'78',sfx:'%',lbl:'Lead conversion growth YoY'},{num:'₹1',sfx:'Cr+',lbl:'Annual revenue generated'},{num:'23',sfx:'+',lbl:'Enterprise clients closed'}],
+  awards:[{ico:'🏆',t:'Best Sales Record of the Year',y:'HOPE Research Group · 2024'},{ico:'🥇',t:'Top Business Development Performer',y:'HOPE Research Group · 2024'},{ico:'💡',t:'Best Product Innovation Award',y:'HOPE Research Group · 2024'},{ico:'🤝',t:'Client Relations Excellence Award',y:'HOPE Research Group · 2024'},{ico:'📜',t:'HubSpot Sales Hub Certified',y:'HubSpot · 2025'},{ico:'🖥️',t:'Microsoft Technology Associate (MTA)',y:'Microsoft'}],
+  contact:{title:'Open to FAANG &amp; top SaaS roles.',sub:'Available for Enterprise Sales, Account Executive, BDM and Sales Manager roles across India and global markets. Let\'s build something big.',email:'daftariumesh@gmail.com',phone:'+91-9443793635',li:'https://linkedin.com/in/umeshdaftari',loc:'Bengaluru, India'},
+  settings:{logo:'U',logon:'Daftari',hire:'Hire Me →',footer:'© 2025 Umesh Daftari · Enterprise SaaS Sales · Bengaluru, India',ticker:'Coca-Cola,McDonald\'s India,Nestlé USA,Burger King,Jubilant FoodWorks · Domino\'s,Aditya Birla · Opus Paints,Rolex India,Cure Foods India,Ghost Kitchens India,Simpli Namdharis,Mustard Fashions,Marelli & Motherson,Belgian Waffle Co.,Residency Hotels,7th Heaven Bakery,Orchids International School,Pro Hotels,Burgerman India,Kamal Watches,Zed the Bakers,Chaileela Cafe'},
 };
 
-/* ═══════════════════════════════════════════
+/* Load from localStorage or use defaults */
+let D = {};
+try {
+  const saved = localStorage.getItem('pf_data');
+  D = saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(DEF));
+} catch(e) { D = JSON.parse(JSON.stringify(DEF)); }
+
+/* ════════════════════════════════════════
    RENDER FUNCTIONS
-═══════════════════════════════════════════ */
+════════════════════════════════════════ */
 function renderAll(){
-  renderSkills(); renderExp(); renderCases();
-  renderAch(); renderAwards(); renderContact();
-  renderTicker(); buildCMSEditors();
+  renderHero(); renderAbout(); renderExp(); renderCases();
+  renderAch(); renderAwards(); renderContact(); renderTicker();
+  populateForms(); buildCMSEditors();
 }
 
-function renderSkills(){
-  const g=document.getElementById('skills-grid');
-  g.innerHTML=DATA.skills.map(s=>`<div class="sk"><div class="sk-c">${s.cat}</div><div class="sk-i">${s.items}</div></div>`).join('');
+function renderHero(){
+  document.getElementById('htag-txt').textContent = D.hero.tag;
+  document.getElementById('hfn').textContent = D.hero.fn;
+  document.getElementById('hln').textContent = D.hero.ln;
+  document.getElementById('hsub').textContent = D.hero.title;
+  document.getElementById('hdesc-txt').innerHTML = D.hero.desc;
+  document.getElementById('hstats').innerHTML = D.hero.stats.map(s=>`<div><div class="snum">${s.num}<em>${s.sfx}</em></div><div class="slbl">${s.lbl}</div></div>`).join('');
+  document.getElementById('hcard-awards').innerHTML = D.hero.awards.map(a=>`<div class="haw"><div class="haw-ico">${a.ico}</div><div><div class="haw-t">${a.t}</div><div class="haw-y">${a.y}</div></div></div>`).join('');
+}
+
+function renderAbout(){
+  document.getElementById('about-paras').innerHTML = D.about.paras.map(p=>`<p class="ap">${p}</p>`).join('');
+  document.getElementById('skills-grid').innerHTML = D.about.skills.map(s=>`<div class="sk"><div class="skc">${s.cat}</div><div class="ski">${s.items}</div></div>`).join('');
 }
 
 function renderExp(){
-  const t=document.getElementById('exp-timeline');
-  t.innerHTML=DATA.experience.map(e=>`
-    <div class="tl-item rv">
-      <div><div class="tl-per">${e.period}</div><div class="tl-co">${e.company}</div></div>
-      <div>
-        <div class="tl-role">${e.role}</div>
-        <div class="tl-loc">${e.location}</div>
-        <ul class="tl-ul">${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
-      </div>
+  document.getElementById('exp-tl').innerHTML = D.exp.map(e=>`
+    <div class="tli rv">
+      <div><div class="tlper">${e.period}</div><div class="tlco">${e.co}</div></div>
+      <div><div class="tlrole">${e.role}</div><div class="tlloc">${e.loc}</div>
+      <ul class="tlul">${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div>
     </div>`).join('');
 }
 
 function renderCases(){
-  const g=document.getElementById('cases-grid');
-  g.innerHTML=DATA.cases.map(c=>`
-    <div class="cc rv" data-cat="${c.category}" id="case-${c.id}">
-      <div class="cc-accent ${c.platform}"></div>
-      <div class="cc-head">
-        <div class="brand-logo" style="background:${c.logoBg};color:#fff;font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:700;text-align:center;padding:2px">${c.logoText}</div>
-        <div class="cc-meta" style="flex:1"><div class="cc-sector">${c.sector}</div><div class="cc-name">${c.name}</div></div>
-        <span class="plat-badge ${c.platform}">${c.platform==='hope'?'HOPE':'PopProbe'}</span>
+  document.getElementById('cases-grid').innerHTML = D.cases.map(c=>`
+    <div class="cc rv" data-cat="${c.cat}" id="cc-${c.id}">
+      <div class="ccacc ${c.plat}"></div>
+      <div class="cchead">
+        <div class="cclogo" style="background:${c.logoBg}">
+          ${c.logoImg ? `<img src="${c.logoImg}" alt="${c.name}">` : `<div class="cclogo-txt">${c.logoTxt}</div>`}
+        </div>
+        <div class="ccmeta"><div class="ccsec">${c.sec}</div><div class="ccname">${c.name}</div></div>
+        <span class="ccbadge ${c.plat}">${c.plat==='hope'?'HOPE':'PopProbe'}</span>
       </div>
-      <div class="cc-scale">📍 ${c.scale}</div>
-      <div class="cc-body">
-        <div class="cc-lbl lbl-p">Problem</div>
-        <div class="cc-txt">${c.problem}</div>
-        <div class="cc-lbl lbl-s">My Solution</div>
-        <div class="cc-txt">${c.solution}</div>
+      <div class="ccscale">📍 ${c.scale}</div>
+      <div class="ccbody">
+        <div class="cclbl lp">Problem</div><div class="cctxt">${c.problem}</div>
+        <div class="cclbl ls">My Solution</div><div class="cctxt">${c.solution}</div>
       </div>
-      <div class="cc-metrics">${c.metrics.map(m=>`<span class="cm">${m}</span>`).join('')}</div>
+      <div class="ccmetrics">${c.metrics.map(m=>`<span class="cm">${m}</span>`).join('')}</div>
+      ${c.testimonial ? `<div class="cctestimonial"><div class="cctesti-text">${c.testimonial}</div><div class="cctesti-by">— ${c.testiBy}</div></div>` : ''}
     </div>`).join('');
-  renderCMSCaseList();
-  observeReveal();
+  buildCMSCaseList(); observeRv();
 }
 
 function renderAch(){
-  document.getElementById('ach-grid').innerHTML=DATA.achievements.map(a=>`
-    <div class="ac rv"><div class="ac-n">${a.num}<em>${a.suffix}</em></div><div class="ac-l">${a.label}</div></div>`).join('');
+  document.getElementById('ach-grid').innerHTML = D.ach.map(a=>`<div class="ac rv"><div class="acn">${a.num}<em>${a.sfx}</em></div><div class="acl">${a.lbl}</div></div>`).join('');
 }
 
 function renderAwards(){
-  document.getElementById('awards-grid').innerHTML=DATA.awards.map(a=>`
-    <div class="aw-s rv"><div class="aw-s-i">${a.icon}</div><div><div class="aw-s-t">${a.title}</div><div class="aw-s-y">${a.year}</div></div></div>`).join('');
+  document.getElementById('awards-grid').innerHTML = D.awards.map(a=>`<div class="aws rv"><div class="awsi">${a.ico}</div><div><div class="awst">${a.t}</div><div class="awsy">${a.y}</div></div></div>`).join('');
 }
 
 function renderContact(){
-  const c=DATA.contact;
-  document.getElementById('contact-links').innerHTML=`
-    <a href="mailto:${c.email}" class="ct-l">✉ Email Me</a>
-    <a href="${c.linkedin}" target="_blank" class="ct-l">in LinkedIn →</a>
-    <a href="tel:${c.phone}" class="ct-l">📞 ${c.phone}</a>`;
-  document.getElementById('contact-detail').textContent=`${c.email} · ${c.location}`;
+  const c = D.contact;
+  document.getElementById('ct-title').innerHTML = c.title;
+  document.getElementById('ct-sub').textContent = c.sub;
+  document.getElementById('ct-links').innerHTML = `
+    <a href="mailto:${c.email}" class="ctl">✉ Email Me</a>
+    <a href="${c.li}" target="_blank" class="ctl">in LinkedIn →</a>
+    <a href="tel:${c.phone}" class="ctl">📞 ${c.phone}</a>`;
+  document.getElementById('ct-detail').textContent = `${c.email} · ${c.loc}`;
 }
 
 function renderTicker(){
-  const items=[...DATA.ticker,...DATA.ticker];
-  document.getElementById('ticker-track').innerHTML=items.map(t=>`<span class="tick-i"><span class="tick-dot"></span>${t}</span>`).join('');
+  const items = D.settings.ticker.split(',').map(t=>t.trim()).filter(t=>t);
+  const all = [...items,...items];
+  document.getElementById('ttrack').innerHTML = all.map(t=>`<span class="ti"><span class="td"></span>${t}</span>`).join('');
 }
 
-/* ═══════════════════════════════════════════
-   CMS EDITOR BUILDERS
-═══════════════════════════════════════════ */
+function renderSettings(){
+  document.getElementById('logo-char').textContent = D.settings.logo;
+  document.getElementById('logo-name').textContent = D.settings.logon;
+  document.getElementById('footer-logo-char').textContent = D.settings.logo;
+  document.getElementById('footer-logo-name').textContent = D.settings.logon;
+  document.getElementById('hire-txt').textContent = D.settings.hire;
+  document.getElementById('footer-copy').textContent = D.settings.footer;
+}
+
+/* ════════════════════════════════════════
+   POPULATE CMS FORMS
+════════════════════════════════════════ */
+function populateForms(){
+  const set = (id, val) => { const el=document.getElementById(id); if(el) el.value=val; };
+  set('f-tag', D.hero.tag); set('f-fn', D.hero.fn); set('f-ln', D.hero.ln);
+  set('f-title', D.hero.title); set('f-desc', D.hero.desc);
+  set('f-ct', D.contact.title); set('f-csub', D.contact.sub);
+  set('f-email', D.contact.email); set('f-phone', D.contact.phone);
+  set('f-li', D.contact.li); set('f-loc', D.contact.loc);
+  set('f-logo', D.settings.logo); set('f-logon', D.settings.logon);
+  set('f-hire', D.settings.hire); set('f-footer', D.settings.footer);
+  set('f-ticker', D.settings.ticker);
+  renderSettings();
+}
+
+/* ════════════════════════════════════════
+   BUILD CMS EDITORS
+════════════════════════════════════════ */
 function buildCMSEditors(){
-  buildSkillsEditor(); buildExpEditor(); buildAchEditor(); buildAwardsEditor();
+  buildStatsEd(); buildHeroAwardsEd(); buildAboutParasEd();
+  buildSkillsEd(); buildExpList(); buildAchEd(); buildAwardsEd();
 }
 
-function buildSkillsEditor(){
-  const el=document.getElementById('skills-editor');
-  el.innerHTML=DATA.skills.map((s,i)=>`
-    <div style="margin-bottom:.8rem">
-      <div class="cms-label">Skill ${i+1} — Category</div>
-      <input class="cms-input" value="${s.cat}" oninput="DATA.skills[${i}].cat=this.value;renderSkills()" style="margin-bottom:.4rem">
-      <div class="cms-label">Items</div>
-      <input class="cms-input" value="${s.items}" oninput="DATA.skills[${i}].items=this.value;renderSkills()">
-    </div>`).join('');
-}
-
-function buildExpEditor(){
-  const el=document.getElementById('exp-editor');
-  el.innerHTML=DATA.experience.map((e,i)=>`
-    <div style="background:var(--cms-surface);border:1px solid var(--cms-border);border-radius:6px;padding:1rem;margin-bottom:.8rem">
-      <div class="cms-section-title" style="margin-bottom:.8rem">${e.role}</div>
-      <div class="cms-row">
-        <div><div class="cms-label">Period</div><input class="cms-input" value="${e.period}" oninput="DATA.experience[${i}].period=this.value;renderExp()"></div>
-        <div><div class="cms-label">Company</div><input class="cms-input" value="${e.company}" oninput="DATA.experience[${i}].company=this.value;renderExp()"></div>
+function buildStatsEd(){
+  document.getElementById('stats-ed').innerHTML = D.hero.stats.map((s,i)=>`
+    <div style="background:var(--cms2);border:1px solid var(--cmsb);border-radius:6px;padding:.8rem;margin-bottom:.6rem">
+      <div class="cr3">
+        <div><div class="cl">Number</div><input class="ci" value="${s.num}" oninput="D.hero.stats[${i}].num=this.value;renderHero()"></div>
+        <div><div class="cl">Suffix</div><input class="ci" value="${s.sfx}" oninput="D.hero.stats[${i}].sfx=this.value;renderHero()"></div>
+        <div><div class="cl">Label</div><input class="ci" value="${s.lbl}" oninput="D.hero.stats[${i}].lbl=this.value;renderHero()"></div>
       </div>
-      <div class="cms-group" style="margin-top:.6rem"><div class="cms-label">Role Title</div><input class="cms-input" value="${e.role}" oninput="DATA.experience[${i}].role=this.value;renderExp()"></div>
-      <div class="cms-group"><div class="cms-label">Location</div><input class="cms-input" value="${e.location}" oninput="DATA.experience[${i}].location=this.value;renderExp()"></div>
-      <div class="cms-label" style="margin-top:.6rem">Bullet Points (one per line)</div>
-      <textarea class="cms-textarea" style="min-height:100px" oninput="DATA.experience[${i}].bullets=this.value.split('\\n').filter(b=>b.trim());renderExp()">${e.bullets.join('\n')}</textarea>
+      <button class="cb- cb-d cb-sm" style="margin-top:.5rem" onclick="D.hero.stats.splice(${i},1);buildStatsEd();renderHero()">Delete</button>
     </div>`).join('');
 }
 
-function buildAchEditor(){
-  const el=document.getElementById('ach-editor');
-  el.innerHTML=DATA.achievements.map((a,i)=>`
-    <div class="cms-row" style="margin-bottom:.8rem">
-      <div><div class="cms-label">Number</div><input class="cms-input" value="${a.num}" oninput="DATA.achievements[${i}].num=this.value;renderAch()"></div>
-      <div><div class="cms-label">Suffix</div><input class="cms-input" value="${a.suffix}" oninput="DATA.achievements[${i}].suffix=this.value;renderAch()"></div>
-      <div style="grid-column:span 2"><div class="cms-label">Label</div><input class="cms-input" value="${a.label}" oninput="DATA.achievements[${i}].label=this.value;renderAch()"></div>
-    </div>`).join('');
-  // fix grid
-  document.querySelectorAll('#ach-editor .cms-row').forEach(r=>r.style.gridTemplateColumns='1fr 1fr');
-}
-
-function buildAwardsEditor(){
-  const el=document.getElementById('awards-editor');
-  el.innerHTML=DATA.awards.map((a,i)=>`
-    <div class="cms-row" style="margin-bottom:.8rem;align-items:end">
-      <div><div class="cms-label">Icon</div><input class="cms-input" value="${a.icon}" style="font-size:1.2rem" oninput="DATA.awards[${i}].icon=this.value;renderAwards()"></div>
-      <div><div class="cms-label">Award Title</div><input class="cms-input" value="${a.title}" oninput="DATA.awards[${i}].title=this.value;renderAwards()"></div>
-      <div><div class="cms-label">Year/Source</div><input class="cms-input" value="${a.year}" oninput="DATA.awards[${i}].year=this.value;renderAwards()"></div>
+function buildHeroAwardsEd(){
+  document.getElementById('heroawards-ed').innerHTML = D.hero.awards.map((a,i)=>`
+    <div style="display:flex;gap:.5rem;align-items:center;margin-bottom:.5rem">
+      <input class="ci" value="${a.ico}" style="width:52px" oninput="D.hero.awards[${i}].ico=this.value;renderHero()">
+      <input class="ci" value="${a.t}" oninput="D.hero.awards[${i}].t=this.value;renderHero()" placeholder="Award title">
+      <input class="ci" value="${a.y}" oninput="D.hero.awards[${i}].y=this.value;renderHero()" placeholder="Year/Source">
+      <button class="cb- cb-d cb-sm" onclick="D.hero.awards.splice(${i},1);buildHeroAwardsEd();renderHero()">✕</button>
     </div>`).join('');
 }
 
-function renderCMSCaseList(){
-  const el=document.getElementById('cms-case-list');
-  el.innerHTML=DATA.cases.map((c,i)=>`
-    <div class="cms-case-item" id="cmi-${c.id}" onclick="openCaseEditor(${i})">
-      <div>
-        <div class="cms-case-name">${c.name}</div>
-        <div class="cms-case-meta">${c.sector} · ${c.scale.split('·')[0]}</div>
+function addHeroAward(){
+  D.hero.awards.push({ico:'🏆',t:'New Award',y:'2025'});
+  buildHeroAwardsEd(); renderHero();
+}
+
+function buildAboutParasEd(){
+  document.getElementById('about-paras-ed').innerHTML = D.about.paras.map((p,i)=>`
+    <div style="margin-bottom:.7rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem">
+        <div class="cl">Paragraph ${i+1}</div>
+        <button class="cb- cb-d cb-sm" onclick="D.about.paras.splice(${i},1);buildAboutParasEd();renderAbout()">Delete</button>
       </div>
-      <div class="cms-case-badges">
-        <span class="cms-badge ${c.platform}">${c.platform==='hope'?'HOPE':'POP'}</span>
-        <span class="cms-badge" style="background:rgba(255,255,255,.06);color:var(--text3)">${c.category}</span>
+      <textarea class="cta" oninput="D.about.paras[${i}]=this.value;renderAbout()">${p}</textarea>
+    </div>`).join('');
+}
+
+function addAboutPara(){
+  D.about.paras.push('New paragraph text here.');
+  buildAboutParasEd(); renderAbout();
+}
+
+function buildSkillsEd(){
+  document.getElementById('skills-ed').innerHTML = D.about.skills.map((s,i)=>`
+    <div style="background:var(--cms2);border:1px solid var(--cmsb);border-radius:6px;padding:.7rem;margin-bottom:.5rem">
+      <div class="cr">
+        <div><div class="cl">Category</div><input class="ci" value="${s.cat}" oninput="D.about.skills[${i}].cat=this.value;renderAbout()"></div>
+        <div><div class="cl">Items</div><input class="ci" value="${s.items}" oninput="D.about.skills[${i}].items=this.value;renderAbout()"></div>
+      </div>
+      <button class="cb- cb-d cb-sm" style="margin-top:.5rem" onclick="D.about.skills.splice(${i},1);buildSkillsEd();renderAbout()">Delete</button>
+    </div>`).join('');
+}
+
+function addSkill(){
+  D.about.skills.push({cat:'New Skill',items:'Item 1 · Item 2'});
+  buildSkillsEd(); renderAbout();
+}
+
+function buildExpList(){
+  const el = document.getElementById('exp-list');
+  el.innerHTML = D.exp.map((e,i)=>`
+    <div class="citem" id="eli-${i}" onclick="openExpEd(${i})">
+      <div class="citem-left"><div class="citem-name">${e.role}</div><div class="citem-meta">${e.co} · ${e.period}</div></div>
+      <div class="citem-right"><span class="cbadge cbadge-gray">${e.period.split('–')[0].trim()}</span></div>
+    </div>`).join('');
+}
+
+function openExpEd(i){
+  document.querySelectorAll('#exp-list .citem').forEach(el=>el.classList.remove('ed'));
+  document.getElementById(`eli-${i}`).classList.add('ed');
+  const e = D.exp[i];
+  document.getElementById('exp-ed-area').innerHTML = `
+    <div class="ced on">
+      <div class="ced-title">Editing: ${e.role} <button class="cb- cb-s cb-sm" onclick="document.getElementById('exp-ed-area').innerHTML='';buildExpList()">Close</button></div>
+      <div class="cr">
+        <div class="cg"><div class="cl">Period</div><input class="ci" value="${e.period}" oninput="D.exp[${i}].period=this.value;renderExp();buildExpList()"></div>
+        <div class="cg"><div class="cl">Company</div><input class="ci" value="${e.co}" oninput="D.exp[${i}].co=this.value;renderExp();buildExpList()"></div>
+      </div>
+      <div class="cg"><div class="cl">Role Title</div><input class="ci" value="${e.role}" oninput="D.exp[${i}].role=this.value;renderExp();buildExpList()"></div>
+      <div class="cg"><div class="cl">Location</div><input class="ci" value="${e.loc}" oninput="D.exp[${i}].loc=this.value;renderExp()"></div>
+      <div class="cg"><div class="cl">Bullet Points (one per line)</div>
+        <textarea class="cta" style="min-height:100px" oninput="D.exp[${i}].bullets=this.value.split('\\n').filter(b=>b.trim());renderExp()">${e.bullets.join('\n')}</textarea>
+      </div>
+      <button class="cb- cb-d cb-sm" onclick="if(confirm('Delete this experience?')){D.exp.splice(${i},1);renderExp();buildExpList();document.getElementById('exp-ed-area').innerHTML=''}">Delete This Role</button>
+    </div>`;
+}
+
+function addExp(){
+  D.exp.unshift({period:'2025 – Present',co:'Company Name',role:'New Role',loc:'📍 Location',bullets:['Achievement 1','Achievement 2']});
+  buildExpList(); renderExp(); openExpEd(0);
+}
+
+/* CASE STUDY EDITOR */
+function buildCMSCaseList(){
+  document.getElementById('cases-list').innerHTML = D.cases.map((c,i)=>`
+    <div class="citem" id="cli-${c.id}" onclick="openCaseEd(${i})">
+      <div class="citem-left">
+        <div class="citem-name">${c.name}</div>
+        <div class="citem-meta">${c.sec}</div>
+      </div>
+      <div class="citem-right">
+        <span class="cbadge ${c.plat==='hope'?'cbadge-hope':'cbadge-pop'}">${c.plat==='hope'?'HOPE':'POP'}</span>
+        <span class="cbadge cbadge-gray">${c.cat}</span>
       </div>
     </div>`).join('');
 }
 
-let activeCaseIdx=-1;
-function openCaseEditor(i){
-  activeCaseIdx=i;
-  document.querySelectorAll('.cms-case-item').forEach(el=>el.classList.remove('editing'));
-  document.getElementById(`cmi-${DATA.cases[i].id}`).classList.add('editing');
-  const c=DATA.cases[i];
-  const ea=document.getElementById('case-editor-area');
-  ea.innerHTML=`
-    <div class="cms-case-editor open" id="active-case-ed">
-      <div class="cms-section-title" style="color:var(--cms-blue)">Editing: ${c.name}</div>
-      <div class="cms-group"><div class="cms-label">Client Name</div><input class="cms-input" value="${c.name}" oninput="updateCase(${i},'name',this.value)"></div>
-      <div class="cms-row">
-        <div class="cms-group"><div class="cms-label">Sector</div><input class="cms-input" value="${c.sector}" oninput="updateCase(${i},'sector',this.value)"></div>
-        <div class="cms-group"><div class="cms-label">Category</div>
-          <select class="cms-select" onchange="updateCase(${i},'category',this.value)">
-            ${['fnb','retail','fmcg','hospitality','other'].map(cat=>`<option value="${cat}" ${cat===c.category?'selected':''}>${cat}</option>`).join('')}
+function openCaseEd(i){
+  document.querySelectorAll('#cases-list .citem').forEach(el=>el.classList.remove('ed'));
+  const c = D.cases[i];
+  document.getElementById(`cli-${c.id}`)?.classList.add('ed');
+  document.getElementById('case-ed-area').innerHTML = `
+    <div class="ced on">
+      <div class="ced-title">✏️ ${c.name} <button class="cb- cb-s cb-sm" onclick="document.getElementById('case-ed-area').innerHTML='';buildCMSCaseList()">Close</button></div>
+
+      <div class="cg"><div class="cl">Client / Company Name</div><input class="ci" value="${c.name}" oninput="updateCase(${i},'name',this.value)"></div>
+      <div class="cr">
+        <div class="cg"><div class="cl">Sector / Industry</div><input class="ci" value="${c.sec}" oninput="updateCase(${i},'sec',this.value)"></div>
+        <div class="cg"><div class="cl">Category</div>
+          <select class="csel" onchange="updateCase(${i},'cat',this.value)">
+            ${['fnb','retail','fmcg','hospitality','other'].map(x=>`<option value="${x}" ${x===c.cat?'selected':''}>${x}</option>`).join('')}
           </select>
         </div>
       </div>
-      <div class="cms-row">
-        <div class="cms-group"><div class="cms-label">Platform</div>
-          <select class="cms-select" onchange="updateCase(${i},'platform',this.value)">
-            <option value="hope" ${c.platform==='hope'?'selected':''}>HOPE Research Group</option>
-            <option value="pop" ${c.platform==='pop'?'selected':''}>PopProbe</option>
+      <div class="cr">
+        <div class="cg"><div class="cl">Platform</div>
+          <select class="csel" onchange="updateCase(${i},'plat',this.value)">
+            <option value="hope" ${c.plat==='hope'?'selected':''}>HOPE Research Group</option>
+            <option value="pop" ${c.plat==='pop'?'selected':''}>PopProbe</option>
           </select>
         </div>
-        <div class="cms-group"><div class="cms-label">Scale / Location</div><input class="cms-input" value="${c.scale}" oninput="updateCase(${i},'scale',this.value)"></div>
+        <div class="cg"><div class="cl">Scale / Location</div><input class="ci" value="${c.scale}" oninput="updateCase(${i},'scale',this.value)"></div>
       </div>
-      <div class="cms-row">
-        <div class="cms-group"><div class="cms-label">Logo Color</div>
-          <div class="cms-color-row"><input type="color" value="${c.logoBg}" oninput="updateCase(${i},'logoBg',this.value)"><input class="cms-input" value="${c.logoBg}" oninput="updateCase(${i},'logoBg',this.value)"></div>
+
+      <div class="cdiv"></div>
+      <div class="cst" style="margin-bottom:.6rem">Logo</div>
+      <div class="cr">
+        <div class="cg">
+          <div class="cl">Upload Logo Image</div>
+          <div class="img-upload" id="logo-upload-${i}">
+            <input type="file" accept="image/*" onchange="uploadLogo(${i},this)">
+            ${c.logoImg ? `<img class="img-preview" src="${c.logoImg}" alt="logo">` : `<div style="font-size:1.5rem;margin-bottom:.3rem">🖼️</div>`}
+            <div class="img-upload-txt"><strong>Click to upload</strong> logo image<br><span style="font-size:.62rem">PNG, JPG, SVG · Max 2MB</span></div>
+          </div>
+          ${c.logoImg ? `<button class="cb- cb-d cb-sm" style="margin-top:.4rem;width:100%" onclick="updateCase(${i},'logoImg','');document.getElementById('logo-upload-${i}').querySelector('img')?.remove();openCaseEd(${i})">Remove Image</button>` : ''}
         </div>
-        <div class="cms-group"><div class="cms-label">Logo Text</div><input class="cms-input" value="${c.logoText}" oninput="updateCase(${i},'logoText',this.value)"></div>
+        <div>
+          <div class="cg"><div class="cl">Logo BG Color (if no image)</div>
+            <div class="color-row"><input type="color" value="${c.logoBg}" oninput="updateCase(${i},'logoBg',this.value)"><input class="ci" value="${c.logoBg}" oninput="updateCase(${i},'logoBg',this.value)"></div>
+          </div>
+          <div class="cg"><div class="cl">Logo Text (if no image)</div><input class="ci" value="${c.logoTxt}" oninput="updateCase(${i},'logoTxt',this.value)"></div>
+        </div>
       </div>
-      <div class="cms-group"><div class="cms-label">Problem Statement</div><textarea class="cms-textarea" style="min-height:88px" oninput="updateCase(${i},'problem',this.value)">${c.problem}</textarea></div>
-      <div class="cms-group"><div class="cms-label">Solution</div><textarea class="cms-textarea" style="min-height:88px" oninput="updateCase(${i},'solution',this.value)">${c.solution}</textarea></div>
-      <div class="cms-group"><div class="cms-label">Metrics (comma separated)</div><input class="cms-input" value="${c.metrics.join(', ')}" oninput="updateCase(${i},'metrics',this.value.split(',').map(m=>m.trim()).filter(m=>m))"></div>
-      <div style="display:flex;gap:.6rem;margin-top:.6rem">
-        <button class="cms-btn cms-btn-secondary cms-btn-sm" onclick="closeCaseEditor()">Close</button>
-        <button class="cms-btn cms-btn-danger cms-btn-sm" onclick="deleteCase(${i})">Delete</button>
+
+      <div class="cdiv"></div>
+      <div class="cg"><div class="cl">Problem Statement</div><textarea class="cta" style="min-height:80px" oninput="updateCase(${i},'problem',this.value)">${c.problem}</textarea></div>
+      <div class="cg"><div class="cl">My Solution</div><textarea class="cta" style="min-height:80px" oninput="updateCase(${i},'solution',this.value)">${c.solution}</textarea></div>
+      <div class="cg"><div class="cl">Metrics (comma separated)</div><input class="ci" value="${c.metrics.join(', ')}" oninput="updateCase(${i},'metrics',this.value.split(',').map(m=>m.trim()).filter(m=>m))"></div>
+
+      <div class="cdiv"></div>
+      <div class="cst" style="margin-bottom:.6rem">Testimonial (optional)</div>
+      <div class="cg"><div class="cl">Testimonial Quote</div><textarea class="cta" placeholder="Leave blank if no testimonial..." oninput="updateCase(${i},'testimonial',this.value)">${c.testimonial||''}</textarea></div>
+      <div class="cg"><div class="cl">Testimonial By (Name, Title, Company)</div><input class="ci" placeholder="e.g. John Smith, VP Operations, McDonald's India" value="${c.testiBy||''}" oninput="updateCase(${i},'testiBy',this.value)"></div>
+
+      <div class="cact">
+        <button class="cb- cb-d cb-sm" onclick="if(confirm('Delete ${c.name}?')){D.cases.splice(${i},1);renderCases();document.getElementById('case-ed-area').innerHTML=''}">Delete Client</button>
       </div>
     </div>`;
 }
 
-function closeCaseEditor(){
-  document.getElementById('case-editor-area').innerHTML='';
-  document.querySelectorAll('.cms-case-item').forEach(el=>el.classList.remove('editing'));
+function uploadLogo(i, input){
+  const file = input.files[0];
+  if(!file) return;
+  if(file.size > 2*1024*1024){ alert('Image too large. Max 2MB.'); return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    D.cases[i].logoImg = e.target.result;
+    renderCases();
+    openCaseEd(i);
+  };
+  reader.readAsDataURL(file);
 }
 
-function updateCase(i,key,val){
-  DATA.cases[i][key]=val;
-  const card=document.getElementById(`case-${DATA.cases[i].id}`);
-  if(!card)return;
-  if(key==='name'){card.querySelector('.cc-name').textContent=val;document.getElementById(`cmi-${DATA.cases[i].id}`).querySelector('.cms-case-name').textContent=val}
-  if(key==='sector')card.querySelector('.cc-sector').textContent=val;
-  if(key==='scale')card.querySelector('.cc-scale').innerHTML='📍 '+val;
-  if(key==='problem')card.querySelectorAll('.cc-txt')[0].textContent=val;
-  if(key==='solution')card.querySelectorAll('.cc-txt')[1].textContent=val;
-  if(key==='metrics')card.querySelector('.cc-metrics').innerHTML=val.map(m=>`<span class="cm">${m}</span>`).join('');
-  if(key==='logoBg'||key==='logoText'){const logo=card.querySelector('.brand-logo');logo.style.background=DATA.cases[i].logoBg;logo.textContent=DATA.cases[i].logoText}
-  if(key==='platform'){
-    card.querySelector('.cc-accent').className=`cc-accent ${val}`;
-    card.querySelector('.plat-badge').className=`plat-badge ${val}`;
-    card.querySelector('.plat-badge').textContent=val==='hope'?'HOPE':'PopProbe';
+function updateCase(i, key, val){
+  D.cases[i][key] = val;
+  const card = document.getElementById(`cc-${D.cases[i].id}`);
+  if(!card) return;
+  if(key==='name'){ card.querySelector('.ccname').textContent=val; }
+  if(key==='sec'){ card.querySelector('.ccsec').textContent=val; }
+  if(key==='scale'){ card.querySelector('.ccscale').innerHTML='📍 '+val; }
+  if(key==='problem'){ card.querySelectorAll('.cctxt')[0].textContent=val; }
+  if(key==='solution'){ card.querySelectorAll('.cctxt')[1].textContent=val; }
+  if(key==='metrics'){ card.querySelector('.ccmetrics').innerHTML=val.map(m=>`<span class="cm">${m}</span>`).join(''); }
+  if(key==='testimonial'||key==='testiBy'){
+    let tb = card.querySelector('.cctestimonial');
+    const c = D.cases[i];
+    if(c.testimonial){
+      if(!tb){ tb=document.createElement('div'); tb.className='cctestimonial'; card.appendChild(tb); }
+      tb.innerHTML = `<div class="cctesti-text">${c.testimonial}</div><div class="cctesti-by">— ${c.testiBy}</div>`;
+    } else { tb?.remove(); }
   }
-  if(key==='category')card.dataset.cat=val;
+  if(key==='logoBg'||key==='logoTxt'||key==='logoImg'){
+    const logo = card.querySelector('.cclogo');
+    logo.style.background = D.cases[i].logoBg;
+    logo.innerHTML = D.cases[i].logoImg ? `<img src="${D.cases[i].logoImg}" alt="${D.cases[i].name}">` : `<div class="cclogo-txt">${D.cases[i].logoTxt}</div>`;
+  }
+  if(key==='plat'){
+    card.querySelector('.ccacc').className = `ccacc ${val}`;
+    const b = card.querySelector('.ccbadge');
+    b.className = `ccbadge ${val}`;
+    b.textContent = val==='hope'?'HOPE':'PopProbe';
+  }
+  if(key==='cat'){ card.dataset.cat = val; }
 }
 
 function addCase(){
-  const id=Date.now();
-  const newCase={id,name:'New Client',sector:'Industry · Type',platform:'pop',category:'fnb',scale:'Scale · Location',logoBg:'#333',logoText:'NC',problem:'Describe the client problem here.',solution:'Describe your solution here.',metrics:['Metric 1','Metric 2']};
-  DATA.cases.push(newCase);
+  const id = Date.now();
+  D.cases.push({id,name:'New Client',sec:'Industry · Type',plat:'pop',cat:'fnb',scale:'Scale · Location',logoBg:'#333333',logoTxt:'NC',logoImg:'',problem:'Describe the client problem here.',solution:'Describe your solution here.',metrics:['Metric 1','Metric 2'],testimonial:'',testiBy:''});
   renderCases();
-  openCaseEditor(DATA.cases.length-1);
-  document.getElementById('cms-case-list').lastElementChild.scrollIntoView({behavior:'smooth'});
+  openCaseEd(D.cases.length-1);
+  setTimeout(()=>document.getElementById('cases-list').lastElementChild.scrollIntoView({behavior:'smooth'}),100);
 }
 
-function deleteCase(i){
-  if(!confirm('Delete this case study?'))return;
-  DATA.cases.splice(i,1);
-  renderCases();
-  closeCaseEditor();
+function buildAchEd(){
+  document.getElementById('ach-ed').innerHTML = D.ach.map((a,i)=>`
+    <div style="display:flex;gap:.5rem;align-items:center;margin-bottom:.5rem">
+      <input class="ci" value="${a.num}" style="width:70px" oninput="D.ach[${i}].num=this.value;renderAch()" placeholder="Num">
+      <input class="ci" value="${a.sfx}" style="width:55px" oninput="D.ach[${i}].sfx=this.value;renderAch()" placeholder="Sfx">
+      <input class="ci" value="${a.lbl}" oninput="D.ach[${i}].lbl=this.value;renderAch()" placeholder="Label">
+      <button class="cb- cb-d cb-sm" onclick="D.ach.splice(${i},1);buildAchEd();renderAch()">✕</button>
+    </div>`).join('');
 }
 
-/* ═══════════════════════════════════════════
-   LIVE UPDATE HELPERS
-═══════════════════════════════════════════ */
-function liveUpdate(id,val){const el=document.getElementById(id);if(el)el.textContent=val}
-function updateContact(){
-  DATA.contact.email=document.getElementById('c-email').value;
-  DATA.contact.phone=document.getElementById('c-phone').value;
-  DATA.contact.linkedin=document.getElementById('c-linkedin').value;
-  DATA.contact.location=document.getElementById('c-location').value;
-  renderContact();
-}
-function updateLogo(v){
-  document.getElementById('logo-letter').textContent=v;
-  document.getElementById('footer-logo').textContent=v;
+function addAch(){
+  D.ach.push({num:'0',sfx:'',lbl:'New Metric'});
+  buildAchEd(); renderAch();
 }
 
-/* ═══════════════════════════════════════════
-   CMS PANEL LOGIC
-═══════════════════════════════════════════ */
-function toggleCMS(){
-  document.getElementById('cms-panel').classList.toggle('open');
-  document.getElementById('cms-toggle').textContent=document.getElementById('cms-panel').classList.contains('open')?'✕':'✏️';
+function buildAwardsEd(){
+  document.getElementById('awards-ed').innerHTML = D.awards.map((a,i)=>`
+    <div style="display:flex;gap:.5rem;align-items:center;margin-bottom:.5rem">
+      <input class="ci" value="${a.ico}" style="width:46px;font-size:1.1rem" oninput="D.awards[${i}].ico=this.value;renderAwards()">
+      <input class="ci" value="${a.t}" oninput="D.awards[${i}].t=this.value;renderAwards()" placeholder="Award title">
+      <input class="ci" value="${a.y}" style="width:140px" oninput="D.awards[${i}].y=this.value;renderAwards()" placeholder="Year">
+      <button class="cb- cb-d cb-sm" onclick="D.awards.splice(${i},1);buildAwardsEd();renderAwards()">✕</button>
+    </div>`).join('');
 }
 
-function cmsTab(name,btn){
-  document.querySelectorAll('.cms-tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.cms-section').forEach(s=>s.classList.remove('active'));
-  document.getElementById('cms-'+name).classList.add('active');
+function addAward(){
+  D.awards.push({ico:'🏆',t:'New Award',y:'2025'});
+  buildAwardsEd(); renderAwards();
 }
 
-function saveSection(name){
-  // Save to localStorage
-  try{localStorage.setItem('portfolio_'+name, JSON.stringify(DATA))}catch(e){}
-  const msg=document.getElementById('msg-'+name);
-  msg.classList.add('show');
-  setTimeout(()=>msg.classList.remove('show'),2500);
+/* ════════════════════════════════════════
+   HELPERS
+════════════════════════════════════════ */
+function lu(id, val){ const el=document.getElementById(id); if(el) el.textContent=val; }
+function refreshContact(){ D.contact.email=document.getElementById('f-email').value; D.contact.phone=document.getElementById('f-phone').value; D.contact.li=document.getElementById('f-li').value; D.contact.loc=document.getElementById('f-loc').value; renderContact(); }
+function refreshTicker(val){ D.settings.ticker=val; renderTicker(); }
+
+function save(section){
+  // Sync hero text fields
+  if(section==='hero'){ D.hero.tag=document.getElementById('f-tag').value; D.hero.fn=document.getElementById('f-fn').value; D.hero.ln=document.getElementById('f-ln').value; D.hero.title=document.getElementById('f-title').value; D.hero.desc=document.getElementById('f-desc').value; renderHero(); }
+  if(section==='contact'){ refreshContact(); D.contact.title=document.getElementById('f-ct').value; D.contact.sub=document.getElementById('f-csub').value; renderContact(); }
+  if(section==='settings'){ D.settings.logo=document.getElementById('f-logo').value; D.settings.logon=document.getElementById('f-logon').value; D.settings.hire=document.getElementById('f-hire').value; D.settings.footer=document.getElementById('f-footer').value; D.settings.ticker=document.getElementById('f-ticker').value; renderSettings(); renderTicker(); }
+  try{ localStorage.setItem('pf_data', JSON.stringify(D)); }catch(e){}
+  const m=document.getElementById(`sv-${section}`); m.classList.add('on'); setTimeout(()=>m.classList.remove('on'),2500);
 }
 
-/* ═══════════════════════════════════════════
-   FILTER + CURSOR + SCROLL
-═══════════════════════════════════════════ */
-function fc(cat,btn){
-  document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on'));
+function exportData(){
+  const blob = new Blob([JSON.stringify(D,null,2)],{type:'application/json'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='portfolio-backup.json'; a.click();
+}
+
+function importData(input){
+  const file = input.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try{ D = JSON.parse(e.target.result); renderAll(); alert('✓ Data imported successfully!'); }
+    catch(err){ alert('Invalid JSON file. Please use a valid backup.'); }
+  };
+  reader.readAsText(file);
+}
+
+/* CMS Panel */
+function cmsToggle(){
+  const p=document.getElementById('cms'), o=document.getElementById('cms-overlay'), f=document.getElementById('cms-fab');
+  const open = p.classList.toggle('open');
+  o.classList.toggle('on',open);
+  f.textContent = open ? '✕' : '✏️';
+}
+
+function cTab(name, btn){
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('on'));
   btn.classList.add('on');
-  document.querySelectorAll('.cc').forEach(c=>{
-    c.style.display=(cat==='all'||c.dataset.cat===cat)?'flex':'none';
-  });
+  document.querySelectorAll('.csec').forEach(s=>s.classList.remove('on'));
+  document.getElementById('csec-'+name).classList.add('on');
 }
 
-// Cursor
-const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-(function animR(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animR)})();
-document.addEventListener('mouseover',e=>{
-  if(e.target.closest('a,button,.cc,.cms-case-item')){curR.style.width='48px';curR.style.height='48px'}
-  else{curR.style.width='32px';curR.style.height='32px'}
-});
+/* Filter */
+function fc(cat,btn){
+  document.querySelectorAll('.ft').forEach(t=>t.classList.remove('on')); btn.classList.add('on');
+  document.querySelectorAll('.cc').forEach(c=>{ c.style.display=(cat==='all'||c.dataset.cat===cat)?'flex':'none'; });
+}
 
-// Scroll reveal
-function observeReveal(){
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('on'),i*55);obs.unobserve(e.target)}});
+/* Scroll reveal */
+function observeRv(){
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('on'),i*55); obs.unobserve(e.target); } });
   },{threshold:.08});
   document.querySelectorAll('.rv:not(.on)').forEach(el=>obs.observe(el));
 }
 
-// Nav active
-const secs=document.querySelectorAll('section[id]');
-const nas=document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll',()=>{
-  let cur2='';
-  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-130)cur2=s.getAttribute('id')});
-  nas.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur2?'rgba(240,238,230,.9)':''});
+/* Cursor */
+const cur=document.getElementById('cur'), curR=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function animR(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(animR)})();
+document.addEventListener('mouseover',e=>{
+  if(e.target.closest('a,button,.cc,.citem,.cadd')){curR.style.width='46px';curR.style.height='46px';}
+  else{curR.style.width='32px';curR.style.height='32px';}
 });
 
-// Try load saved data
-try{
-  const saved=localStorage.getItem('portfolio_hero');
-  if(saved){/* could restore here */}
-}catch(e){}
+/* Nav active */
+document.addEventListener('scroll',()=>{
+  let c2=''; document.querySelectorAll('section[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-130)c2=s.id});
+  document.querySelectorAll('.nav-links a').forEach(a=>{a.style.color=a.getAttribute('href')==='#'+c2?'rgba(240,238,230,.9)':'';});
+},{ passive:true });
 
-// INIT
+/* INIT */
 renderAll();
-observeReveal();
+observeRv();
 </script>
 </body>
 </html>
