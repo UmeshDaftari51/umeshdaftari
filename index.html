@@ -301,7 +301,7 @@ footer{background:var(--navy);padding:1.4rem 5vw;display:flex;justify-content:sp
 .rv.on{opacity:1;transform:translateY(0)}
 
 @media(max-width:1100px){.hgrid{grid-template-columns:1fr}/* hcard-none-removed */.cgrid{grid-template-columns:1fr 1fr}.achg{grid-template-columns:1fr 1fr}.awg{grid-template-columns:1fr}.ag{grid-template-columns:1fr;gap:2rem}}
-@media(max-width:700px){.nav-links,.nhire{display:none!important}.cgrid{grid-template-columns:1fr}.tli{grid-template-columns:1fr;gap:.5rem}.hstats{flex-wrap:wrap;gap:1.5rem}.skg{grid-template-columns:1fr}#cms{width:100vw}.wid-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.nav-links,.nhire{display:none}.cgrid{grid-template-columns:1fr}.tli{grid-template-columns:1fr;gap:.5rem}.hstats{flex-wrap:wrap;gap:1.5rem}.skg{grid-template-columns:1fr}#cms{width:100vw}.wid-grid{grid-template-columns:1fr}}
 
 /* ── DARK THEME ── */
 body.dark { --cream:#0A0A0F; --cream2:#12121A; --cream3:#1A1A26; --navy:#F0EEE6; --navy2:#D4CCB8; --navy3:#B0A898; --txt:#F0EEE6; --txt2:rgba(240,238,230,.7); --txt3:rgba(240,238,230,.4); --txt4:rgba(240,238,230,.22); --bdr:rgba(255,255,255,.08); --bdr2:rgba(255,255,255,.14); --surf:#1E1E2E; }
@@ -329,27 +329,28 @@ body.dark .hamburger span { background:#F0EEE6; }
 
 /* ── MOBILE MENU OVERLAY ── */
 #mobile-menu {
-  position:fixed; inset:0;
-  background:rgba(15,23,41,.55);
-  z-index:1000;
-  opacity:0; pointer-events:none;
-  transition:opacity .3s;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,41,.55);
+  z-index: 9000;
 }
-#mobile-menu.open { opacity:1; pointer-events:all; }
+#mobile-menu.open { display: block; }
 
 /* Full-width slide-down panel from top */
 #mobile-menu-box {
-  position:absolute;
-  top:0; left:0; right:0;
-  background:var(--surf);
-  box-shadow:0 8px 40px rgba(15,23,41,.18);
-  display:flex; flex-direction:column;
-  transform:translateY(-100%);
-  transition:transform .32s cubic-bezier(.4,0,.2,1);
-  border-radius:0 0 16px 16px;
-  overflow:hidden;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  background: var(--surf);
+  box-shadow: 0 12px 48px rgba(15,23,41,.25);
+  display: flex;
+  flex-direction: column;
+  border-radius: 0 0 20px 20px;
+  overflow: hidden;
+  transform: translateY(-110%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
 }
-#mobile-menu.open #mobile-menu-box { transform:translateY(0); }
+#mobile-menu.open #mobile-menu-box { transform: translateY(0); }
 body.dark #mobile-menu-box { background:#1E1E2E; border-bottom:1px solid rgba(255,255,255,.1); }
 
 /* Header */
@@ -395,42 +396,49 @@ body.dark .mm-nav a:hover { background:rgba(255,255,255,.06); }
 
 /* Footer CTA buttons */
 .mm-footer {
-  padding:1.1rem 1.4rem;
-  display:flex; gap:.6rem;
-  background:var(--cream2);
+  padding: 1rem 1.4rem;
+  display: flex;
+  flex-direction: row;
+  gap: .6rem;
+  background: var(--cream2);
+  border-top: 1px solid var(--bdr);
 }
-body.dark .mm-footer { background:#12121A; }
+body.dark .mm-footer { background: #12121A; }
 .mm-cta {
-  flex:1; display:flex; align-items:center; justify-content:center;
-  padding:.7rem .5rem;
-  background:var(--navy); color:#fff;
-  border-radius:6px; font-size:.75rem; font-weight:600;
-  letter-spacing:.06em; text-transform:uppercase;
-  text-decoration:none; transition:background .2s;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .65rem .5rem;
+  background: var(--gold);
+  color: #000;
+  border-radius: 6px;
+  font-size: .73rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity .2s;
 }
-.mm-cta:hover { background:var(--navy2); }
+.mm-cta:hover { opacity: .85; }
 
 /* ── MOBILE RESPONSIVE ── */
-@media(max-width:700px) {
+@media(max-width:768px) {
   .nav-links { display:none !important; }
   .nhire { display:none !important; }
   .hamburger { display:flex !important; }
-  #theme-toggle { display:inline-flex !important; font-size:.65rem; padding:.25rem .55rem; }
+  #theme-toggle { display:inline-flex !important; font-size:.65rem !important; padding:.25rem .55rem !important; }
 }
-@media(min-width:701px) {
+@media(min-width:769px) {
   #mobile-menu { display:none !important; }
   .hamburger { display:none !important; }
 }
 
 
-/* Dark mode button fixes */
 body.dark .btn-n { background:#0F1729 !important; color:#F0EEE6 !important; border:1.5px solid rgba(240,238,230,.2); }
 body.dark .btn-n:hover { background:#1B2A45 !important; }
 body.dark .btn-o { color:#F0EEE6 !important; border-color:rgba(240,238,230,.25) !important; }
 body.dark .btn-o:hover { background:#F0EEE6 !important; color:#0F1729 !important; }
-body.dark .nhire { background:#0F1729 !important; color:#F0EEE6 !important; }
-body.dark .nhire:hover { background:#1B2A45 !important; }
-body.dark .hamburger span { background:#F0EEE6 !important; }
 </style>
 </head>
 <body>
@@ -551,7 +559,7 @@ body.dark .hamburger span { background:#F0EEE6 !important; }
       <a href="#contact" onclick="closeMenu()"><span class="mm-num">05</span>Contact</a>
     </nav>
     <div class="mm-footer">
-      <a href="/cdn-cgi/l/email-protection#83e7e2e5f7e2f1eaf6eee6f0ebc3e4eee2eaefade0ecee" class="mm-cta">✉ Email Me</a>
+      <a href="/cdn-cgi/l/email-protection#f39792958792819a869e96809bb3949e929a9fdd909c9e" class="mm-cta">✉ Email Me</a>
       <a href="https://linkedin.com/in/umeshdaftari" target="_blank" class="mm-cta">in LinkedIn</a>
     </div>
   </div>
